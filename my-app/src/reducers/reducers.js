@@ -5,17 +5,21 @@ import {
   POST_REGISTER_FAILURE
 } from "../actions/EntryActions/RegisterAction";
 
+import {
+  CREATE_EXERCISE_START,
+  CREATE_EXERCISE_SUCCESS,
+  CREATE_EXERCISE_FAILURE
+} from "../actions/EntryActions/RegisterAction";
+
 const initialState = {
   userInfo: {
     username: "",
     password: "",
-    full_name: "",
-    location: "",
     id: 1
   }
 };
 
-const reducers = (state = initialState, action) => {
+export const reducers = (state = initialState, action) => {
   console.log("reducer", action);
   switch (action.type) {
     //Register Reducer
@@ -40,9 +44,31 @@ const reducers = (state = initialState, action) => {
         error: ""
       };
 
+    //Create Exercise Reducer
+    case CREATE_EXERCISE_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case CREATE_EXERCISE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        recipes: action.payload
+      };
+    case CREATE_EXERCISE_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+
+    //Update Exercise Reducer
+
     default:
       return state;
   }
 };
 
-export default reducers;
+// export default reducers;
