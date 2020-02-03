@@ -1,3 +1,8 @@
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import logo from './logo.svg';
+import PrivateRoute from './components/PrivateRoute';
+import Test from './components/TestLogin';
+
 import Login from "./components/Login";
 import "./App.css";
 import React, { useState } from "react";
@@ -30,6 +35,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   }
 }));
+
 function App() {
   const classes = useStyles();
 //used to toggle our drop down menu
@@ -44,6 +50,7 @@ function App() {
     setMenuOpen(false);
   };
   return (
+
     <div className="App">
       <div>
         <AppBar
@@ -74,6 +81,7 @@ function App() {
       <Route exact path="/addexercise" component={AddExercise}></Route>
       <Route exact path="/editexercises" component={EditExercise}></Route>
     </div>
+
   );
 }
 
