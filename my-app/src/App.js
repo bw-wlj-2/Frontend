@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 // import logo from './logo.svg';
 import PrivateRoute from './components/PrivateRoute';
 import Test from './components/TestLogin';
@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 
-import { Link, Route } from "react-router-dom";
+// import { Link, Route } from "react-router-dom";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import EditProfile from "./components/EditProfilePage";
