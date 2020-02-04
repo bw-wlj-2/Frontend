@@ -9,7 +9,6 @@ import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import './styles.css';
 import Copyright from './Copyright';
 
-
 const useStyles = makeStyles(theme => ({
   appBar: {
     backgroundColor: "red"
@@ -40,62 +39,28 @@ const useStyles = makeStyles(theme => ({
     marginTop: 20
   }
 }));
-const Login = props => {
+const Login = () => {
   const classes = useStyles();
   const history = useHistory();
   const [users, setUsers] = useState({ username: '', password: '' })
 
-  // const handleChange = e => {
-  //   setUsers({
-  //     ...users,
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
+  const handleChange = e => {
+    setUsers({
+      ...users,
+      [e.target.name]: e.target.value
+    })
+  }
   const handleSubmit = e => {
     e.preventDefault();
-    axios.post(`https://weight-lifting-backend.herokuapp.com/api/user/login`, users)
-      .then(res => 
+    axios.post(`https://chef-portfolio1-bw.herokuapp.com/api/auth/login`, users)
+      .then(res =>
+        //  console.log(res))
         localStorage.setItem('token', res.data.payload),
         // setTimeout(function () { history.push(`/dashboard`) }, 1500))
         history.push(`/dashboard`))
       .catch(err => console.log(err))
     setUsers({ username: '', password: '' })
   }
-
-  //   const [credentials, setCredentials] = useState({
-  //     username: "",
-  //     password: ""
-  //   });
-
-  //   const handleChanges = e => {
-  //     let name = e.target.name;
-  //     setCredentials({ ...credentials, [name]: e.target.value });
-  //   };
-
-  //   const loginForm = e => {
-  //     e.preventDefault();
-  //     axios.post(`https://weight-lifting-backend.herokuapp.com/api/auth/login`, credentials)
-  //       .then(res =>
-  //         localStorage.setItem('token', res.data.payload),
-  //         // setTimeout(function () { history.push(`/dashboard`) }, 1500))
-  //         history.push(`/dashboard`))
-  //       .catch(err => console.log(err))
-  //     setCredentials({ username: '', password: '' })
-  //   }
-  //   console.log(credentials.username);
-  //   console.log(credentials.password);
-  //   console.log(credentials);
-  //   AxiosWithAuth()
-  //     .post("/api/auth/login", credentials)
-  //     .then(res => {
-  //       localStorage.setItem("token", res.data.token);
-  //       localStorage.setItem("userID", res.data.id);
-  //       console.log(res.data);
-
-  //       props.history.push("/dashboard");
-  //     })
-  //     .catch(err => console.log(err));
-  // };
 
   return (
     <div className='box'>
@@ -111,9 +76,10 @@ const Login = props => {
             margin="normal"
             fullWidth
             type='text'
+            name='username'
             label="Username"
-          // onChange={handleChange}
-          // value={users.username}
+            onChange={handleChange}
+            value={users.username}
           />
           <br />
           <TextField
@@ -122,50 +88,14 @@ const Login = props => {
             fullWidth
             label="Password"
             type="password"
-          // onChange={handleChange}
-          // value={users.password}
+            name='password'
+            onChange={handleChange}
+            value={users.password}
           // error
           // helperText="Required"
           />
-
-          {/* <div className={classes.formDiv}>
-        <TextField
-          label="Username"
-          value={credentials.username}
-          onChange={handleChanges}
-          name="username"
-        />
-        <br />
-        <TextField
-          label="Password"
-          type="password"
-          error
-          helperText="Required"
-          value={credentials.password}
-          onChange={handleChanges}
-          name="password"
-        /> */}
-
-          {/* <form onSubmit={handleSubmit}>
-          <div className={classes.formDiv}>
-            <TextField
-              type='text'
-              label="Username"
-            // onChange={handleChange}
-            // value={users.username}
-            />
-            <br />
-            <TextField
-              label="Password"
-              type="password"
-            // onChange={handleChange}
-            // value={users.password}
-            // error
-            // helperText="Required"
-            /> */}
-
         </div>
-        {/* <Link className={classes.linkBut} to="/dashboard"> */}
+
         <div>
           <Button
             className={classes.contButton}

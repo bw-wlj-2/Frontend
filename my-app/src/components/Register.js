@@ -94,22 +94,7 @@ const Register = props => {
           onChange={handleChanges}
           name="password"
         />
-
         <br />
-        {/*
-        <TextField label="Name" error helperText="Required" />
-        <br />
-        <TextField label="Email" type="email" required 
-        variant="outlined"
-        margin="normal"
-        fullWidth/>
-        <br />
-        <TextField label="Password" type="password" required 
-        variant="outlined"
-        margin="normal"
-        fullWidth/>
-        */}
-
         <div>
           <Link className={classes.linkBut} to="/Dashboard">
             <Button
