@@ -70,7 +70,12 @@ const Login = props => {
       <h1>Login</h1>
 
       <div className={classes.formDiv}>
-        <TextField label="Username" value={credentials.username} />
+        <TextField
+          label="Username"
+          value={credentials.username}
+          onChange={handleChanges}
+          name="username"
+        />
         <br />
         <TextField
           label="Password"
@@ -78,6 +83,8 @@ const Login = props => {
           error
           helperText="Required"
           value={credentials.password}
+          onChange={handleChanges}
+          name="password"
         />
 
         <div>

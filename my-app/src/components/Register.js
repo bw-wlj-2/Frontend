@@ -72,6 +72,7 @@ const Register = props => {
           required
           value={user.username}
           onChange={handleChanges}
+          name="username"
         />
         <br />
         <TextField
@@ -80,6 +81,7 @@ const Register = props => {
           required
           value={user.password}
           onChange={handleChanges}
+          name="password"
         />
 
         <br />
