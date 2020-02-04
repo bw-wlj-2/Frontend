@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
   contButton: {
@@ -26,10 +28,16 @@ const Register = () => {
   const classes = useStyles();
 
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <div className='box'>
+      <AccountBoxIcon fontSize="large" />
+      <Typography component="h2" variant="h5">
+          Register
+        </Typography>
       <div className={classes.formDiv}>
-        <TextField label="Name" error helperText="Required" />
+        <TextField label="Name" 
+        // error 
+        // helperText="Required" 
+        />
         <br />
         <TextField label="Username" required />
         <br />
@@ -45,7 +53,11 @@ const Register = () => {
             >
               Register
             </Button>
+
           </Link>
+          <p>
+            Already have an account? <Link to="/">Log in</Link>
+          </p>
         </div>
       </div>
     </div>
