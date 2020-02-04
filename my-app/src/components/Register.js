@@ -28,16 +28,13 @@ const Register = () => {
   const classes = useStyles();
 
   return (
-    <div className='box'>
+    <div className="box">
       <AccountBoxIcon fontSize="large" />
       <Typography component="h2" variant="h5">
-          Register
-        </Typography>
+        Register
+      </Typography>
       <div className={classes.formDiv}>
-        <TextField label="Name" 
-        // error 
-        // helperText="Required" 
-        />
+        <TextField label="Name" />
         <br />
         <TextField label="Username" required />
         <br />
@@ -53,7 +50,6 @@ const Register = () => {
             >
               Register
             </Button>
-
           </Link>
           <p>
             Already have an account? <Link to="/">Log in</Link>
