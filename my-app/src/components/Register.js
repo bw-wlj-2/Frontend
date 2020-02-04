@@ -1,8 +1,11 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import { connect } from "react-redux";
+import { register } from "../actions/EntryActions/RegisterAction";
 
 const useStyles = makeStyles(theme => ({
   contButton: {
@@ -20,28 +23,80 @@ const useStyles = makeStyles(theme => ({
   },
   linkBut: {
     textDecoration: "none"
+  },
+  warning: {
+    color: "#c62828",
+    fontSize: "0.8rem",
+    marginTop: -15,
+    marginBottom: 10
   }
 }));
-const Register = () => {
+const Register = props => {
   const classes = useStyles();
+
+  const [user, setUser] = useState({
+    username: "",
+    password: ""
+  });
+
+  const passwordLength = () => {
+    return user.password.length === 0 || user.password.length > 5 ? (
+      ""
+    ) : (
+      <Typography className={classes.warning}>
+        Password must be at least 6 characters
+      </Typography>
+    );
+  };
+
+  console.log("checking for user", user);
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    props.register(user);
+    props.history.push("/");
+  };
+
+  const handleChanges = event => {
+    event.preventDefault();
+    setUser({ ...user, [event.target.name]: event.target.value });
+  };
 
   return (
     <div>
       <h1>Sign Up</h1>
       <div className={classes.formDiv}>
-        <TextField label="Name" error helperText="Required" />
+        <TextField
+          label="Username"
+          required
+          value={user.username}
+          onChange={handleChanges}
+        />
         <br />
-        <TextField label="Username" required />
+        <TextField
+          label="Password"
+          type="password"
+          required
+          value={user.password}
+          onChange={handleChanges}
+        />
+        {passwordLength()}
+        <br />
+        {/*
+        <TextField label="Name" error helperText="Required" />
         <br />
         <TextField label="Email" type="email" required />
         <br />
-        <TextField label="Password" type="password" required />
+        */}
+
         <div>
           <Link className={classes.linkBut} to="/Dashboard">
             <Button
               className={classes.contButton}
               variant="outlined"
               color="primary"
+              type="submit"
+              onClick={handleSubmit}
             >
               Register
             </Button>
@@ -51,4 +106,11 @@ const Register = () => {
     </div>
   );
 };
-export default Register;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(
+  mapStateToProps,
+  { register }
+)(Register);
