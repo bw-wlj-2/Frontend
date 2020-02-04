@@ -59,7 +59,8 @@ const Register = props => {
 
   const handleChanges = event => {
     event.preventDefault();
-    setUser({ ...user, [event.target.name]: event.target.value });
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
   };
 
   return (
@@ -80,7 +81,7 @@ const Register = props => {
           value={user.password}
           onChange={handleChanges}
         />
-        {passwordLength()}
+
         <br />
         {/*
         <TextField label="Name" error helperText="Required" />
