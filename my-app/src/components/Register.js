@@ -69,11 +69,11 @@ const Register = props => {
   };
 
   return (
-    <div className='box'>
+    <div className="box">
       <AccountBoxIcon fontSize="large" />
       <Typography component="h2" variant="h5">
-          Register
-        </Typography>
+        Register
+      </Typography>
       <div className={classes.formDiv}>
 
         <TextField
@@ -113,7 +113,6 @@ const Register = props => {
             >
               Register
             </Button>
-
           </Link>
           <p>
             Already have an account? <Link to="/">Log in</Link>
