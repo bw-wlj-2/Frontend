@@ -1,4 +1,9 @@
-import React from "react";
+
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchUser } from "../actions/UserActions/FetchUser";
+import { fetchExercises } from "../actions/UserActions/FetchExercises";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -22,7 +27,6 @@ function Copyright() {
     </Typography>
   );
 }
-
 const useStyles = makeStyles(theme => ({
   icon: {
     marginRight: theme.spacing(2)
@@ -60,8 +64,34 @@ const useStyles = makeStyles(theme => ({
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-export default function Dashboard() {
-  const classes = useStyles();
+
+const Dashboard = props => {
+  const userID = localStorage.getItem("userID");
+  const history = useHistory();
+    const classes = useStyles();
+
+  const [exercises, setExercises] = useState();
+
+  console.log("checking for exercise", exercises);
+
+  useEffect(() => {
+    props.fetchUser(userID);
+  }, []);
+  console.log("this is props", props);
+
+  useEffect(() => {
+    props.fetchExercises(userID);
+    setExercises(props.userExercises);
+  }, [exercises]);
+  console.log("this is props", props);
+
+  const editProfile = event => {
+    event.preventDefault();
+    history.push("/editprofile");
+  };
+
+
+
 
   return (
     <div>
@@ -146,4 +176,16 @@ export default function Dashboard() {
       {/* End footer */}
     </div>
   );
-}
+
+};
+
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchUser, fetchExercises }
+)(Dashboard);
+
+

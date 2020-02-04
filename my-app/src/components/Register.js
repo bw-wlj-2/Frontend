@@ -3,14 +3,12 @@ import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-
-
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../actions/EntryActions/RegisterAction";
 
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import Typography from "@material-ui/core/Typography";
-
 
 const useStyles = makeStyles(theme => ({
   contButton: {
@@ -38,10 +36,12 @@ const useStyles = makeStyles(theme => ({
 }));
 const Register = props => {
   const classes = useStyles();
-
+  const history = useHistory();
   const [user, setUser] = useState({
     username: "",
-    password: ""
+    password: "",
+    location: "",
+    avatarUrl: ""
   });
 
   const passwordLength = () => {
@@ -59,13 +59,14 @@ const Register = props => {
   const handleSubmit = event => {
     event.preventDefault();
     props.register(user);
-    props.history.push("/");
+    history.push("/");
   };
+  console.log(props);
 
   const handleChanges = event => {
     event.preventDefault();
-    const { name, value } = event.target;
-    setUser({ ...user, [name]: value });
+    // const { name, value } = event.target;
+    setUser({ ...user, [event.target.name]: event.target.value });
   };
 
   return (
@@ -75,14 +76,12 @@ const Register = props => {
         Register
       </Typography>
       <div className={classes.formDiv}>
-
         <TextField
           label="Username"
           required
           value={user.username}
           onChange={handleChanges}
           name="username"
-
         />
         <br />
         <TextField
@@ -92,6 +91,21 @@ const Register = props => {
           value={user.password}
           onChange={handleChanges}
           name="password"
+        />
+        <TextField
+          label="location"
+          required
+          value={user.location}
+          onChange={handleChanges}
+          name="location"
+        />
+        <br />
+        <TextField
+          label="avatar"
+          required
+          value={user.avatarUrl}
+          onChange={handleChanges}
+          name="avatarUrl"
         />
 
         <br />

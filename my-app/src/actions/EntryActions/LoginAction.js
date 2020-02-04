@@ -8,7 +8,7 @@ export const login = info => dispatch => {
   dispatch({ type: POST_LOGIN_START });
   console.log(info);
   AxiosWithAuth()
-    .post("/api/auth/login", info)
+    .post("/api/user/login", info)
     .then(res => {
       dispatch({ type: POST_LOGIN_SUCCESS, payload: res.data });
       localStorage.setItem("token", res.data.token);

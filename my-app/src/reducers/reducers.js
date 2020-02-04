@@ -11,6 +11,18 @@ import {
   CREATE_EXERCISE_FAILURE
 } from "../actions/EntryActions/RegisterAction";
 
+import {
+  FETCH_USER_START,
+  FETCH_USER_SUCCESS,
+  FETCH_USER_FAILURE
+} from "../actions/UserActions/FetchUser";
+
+import {
+  FETCH_EXERCISE_START,
+  FETCH_EXERCISE_SUCCESS,
+  FETCH_EXERCISE_FAILURE
+} from "../actions/UserActions/FetchExercises";
+
 const initialState = {
   userInfo: {
     username: "",
@@ -64,7 +76,48 @@ export const reducers = (state = initialState, action) => {
         error: action.payload
       };
 
-    //Update Exercise Reducer
+    //FETCH USER
+
+    case FETCH_USER_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case FETCH_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        chefInfo: action.payload,
+        error: ""
+      };
+    case FETCH_USER_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+
+    //FETCH Exercises Reducer
+    case FETCH_EXERCISE_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case FETCH_EXERCISE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        chefInfo: action.payload,
+        error: ""
+      };
+    case FETCH_EXERCISE_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
 
     default:
       return state;

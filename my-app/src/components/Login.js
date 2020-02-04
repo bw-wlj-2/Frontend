@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 
-
-import TextField from "@material-ui/core/TextField";
-
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import Typography from "@material-ui/core/Typography";
-import './styles.css';
-
+import "./styles.css";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -49,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 const Login = props => {
   const classes = useStyles();
   const history = useHistory();
-//   const [users, setUsers] = useState({ username: '', password: '' })
+  //   const [users, setUsers] = useState({ username: '', password: '' })
 
   // const handleChange = e => {
   //   setUsers({
@@ -57,16 +53,16 @@ const Login = props => {
   //     [e.target.name]: e.target.value
   //   })
   // }
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     axios.post(`https://weight-lifting-backend.herokuapp.com/api/login`, users)
-//       .then(res => 
-//         localStorage.setItem('token', res.data.payload),
-//         // setTimeout(function () { history.push(`/dashboard`) }, 1500))
-//         history.push(`/dashboard`))
-//       .catch(err => console.log(err))
-//     setUsers({ username: '', password: '' })
-//   }
+  //   const handleSubmit = e => {
+  //     e.preventDefault();
+  //     axios.post(`https://weight-lifting-backend.herokuapp.com/api/login`, users)
+  //       .then(res =>
+  //         localStorage.setItem('token', res.data.payload),
+  //         // setTimeout(function () { history.push(`/dashboard`) }, 1500))
+  //         history.push(`/dashboard`))
+  //       .catch(err => console.log(err))
+  //     setUsers({ username: '', password: '' })
+  //   }
 
   const [credentials, setCredentials] = useState({
     username: "",
@@ -84,43 +80,43 @@ const Login = props => {
     console.log(credentials.password);
     console.log(credentials);
     AxiosWithAuth()
-      .post("/api/auth/login", credentials)
+      .post("/api/user/login", credentials)
       .then(res => {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userID", res.data.id);
         console.log(res.data);
 
-        props.history.push("/dashboard");
+        history.push("/dashboard");
       })
       .catch(err => console.log(err));
   };
 
   return (
-    <div className='box'>
+    <div className="box">
       <AccountBoxIcon fontSize="large" />
       <Typography component="h2" variant="h5">
-          Log In
-        </Typography>
-
-
-      <div className={classes.formDiv}>
-        <TextField
-          label="Username"
-          value={credentials.username}
-          onChange={handleChanges}
-          name="username"
-        />
-        <br />
-        <TextField
-          label="Password"
-          type="password"
-          error
-          helperText="Required"
-          value={credentials.password}
-          onChange={handleChanges}
-          name="password"
-        />
-
+        Log In
+      </Typography>
+      <form className={classes.form} onSubmit={loginForm}>
+        <div className={classes.formDiv}>
+          <TextField
+            label="Username"
+            value={credentials.username}
+            onChange={handleChanges}
+            name="username"
+          />
+          <br />
+          <TextField
+            label="Password"
+            type="password"
+            error
+            helperText="Required"
+            value={credentials.password}
+            onChange={handleChanges}
+            name="password"
+          />
+        </div>
+        {/*
 //       <form onSubmit={handleSubmit}>
 //         <div className={classes.formDiv}>
 //           <TextField
@@ -138,22 +134,23 @@ const Login = props => {
 //           // error
 //           // helperText="Required"
 //           />
+*/}
 
+        <div>
+          {/* <Link className={classes.linkBut} to="/dashboard"> */}
+          <Button
+            className={classes.contButton}
+            variant="outlined"
+            color="primary"
+            type="submit"
+          >
+            Login
+          </Button>
 
-          <div>
-            {/* <Link className={classes.linkBut} to="/dashboard"> */}
-              <Button
-                className={classes.contButton}
-                variant="outlined"
-                color="primary"
-              >
-                Login
-            </Button>
-            {/* </Link> */}
-            <p>
-              Don't have an account? <Link to="/register">Sign up</Link>
-            </p>
-          </div>
+          {/* </Link> */}
+          <p>
+            Don't have an account? <Link to="/register">Sign up</Link>
+          </p>
         </div>
       </form>
     </div>
