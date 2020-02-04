@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import Typography from "@material-ui/core/Typography";
 import './styles.css';
+import Copyright from './Copyright';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -24,11 +25,11 @@ const useStyles = makeStyles(theme => ({
   },
   contButton: {
     margin: 30,
-    backgroundColor: "#007CB2",
-    color: "#BFECFF",
+    backgroundColor: "#007FFF",
+    color: "#D8F4FF",
 
     "&:hover": {
-      backgroundColor: "#BFECFF",
+      backgroundColor: "#D8F4FF",
       color: "#007CB2"
     }
   },
@@ -52,8 +53,8 @@ const Login = () => {
   // }
   const handleSubmit = e => {
     e.preventDefault();
-    axios.post(`https://weight-lifting-backend.herokuapp.com/api/login`, users)
-      .then(res => 
+    axios.post(`https://weight-lifting-backend.herokuapp.com/api/auth/login`, users)
+      .then(res =>
         localStorage.setItem('token', res.data.payload),
         // setTimeout(function () { history.push(`/dashboard`) }, 1500))
         history.push(`/dashboard`))
@@ -65,12 +66,15 @@ const Login = () => {
     <div className='box'>
       <AccountBoxIcon fontSize="large" />
       <Typography component="h2" variant="h5">
-          Log In
+        Log In
         </Typography>
 
       <form onSubmit={handleSubmit}>
         <div className={classes.formDiv}>
           <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
             type='text'
             label="Username"
           // onChange={handleChange}
@@ -78,6 +82,9 @@ const Login = () => {
           />
           <br />
           <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
             label="Password"
             type="password"
           // onChange={handleChange}
@@ -88,12 +95,14 @@ const Login = () => {
 
           <div>
             {/* <Link className={classes.linkBut} to="/dashboard"> */}
-              <Button
-                className={classes.contButton}
-                variant="outlined"
-                color="primary"
-              >
-                Login
+
+            <Button
+              className={classes.contButton}
+              variant="outlined"
+              color="primary"
+              type='submit'
+            >
+              Login
             </Button>
             {/* </Link> */}
             <p>
@@ -102,6 +111,9 @@ const Login = () => {
           </div>
         </div>
       </form>
+      <Box mt={8}>
+        <Copyright />
+      </Box>
     </div>
   );
 };

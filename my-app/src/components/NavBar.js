@@ -6,7 +6,7 @@ import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 const useStyles = makeStyles(theme => ({
   appBar: {
     backgroundColor: "#007FFF",
-    color: "#D8F4FF"
+    color: "#D8F4FF",
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   icon: {
     position: 'absolute',
     right: "2rem",
-    color: "black"
+    color: "#D8F4FF"
   }
 }));
 
@@ -45,7 +45,7 @@ const NavBar = () => {
         title="Enter User Details"
       >
         <Toolbar>
-          <Button onClick={recordButtonPosition}>OPEN MENU</Button>
+          <Button onClick={recordButtonPosition} className={classes.appBar}>OPEN MENU</Button>
           <Menu anchorEl={anchorEl} open={menuOpen} onClose={closeMenu}>
             <Link to="/dashboard">
               <MenuItem onClick={closeMenu}> Dashboard </MenuItem>
