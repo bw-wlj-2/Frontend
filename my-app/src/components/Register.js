@@ -1,11 +1,17 @@
-import React from "react";
 import { makeStyles, Box } from "@material-ui/core";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import {useHistory} from 'react-router-dom';
+
+import { connect } from "react-redux";
+import { register } from "../actions/EntryActions/RegisterAction";
+
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import Typography from "@material-ui/core/Typography";
 import Copyright from './Copyright';
+
 
 const useStyles = makeStyles(theme => ({
   contButton: {
@@ -23,10 +29,45 @@ const useStyles = makeStyles(theme => ({
   },
   linkBut: {
     textDecoration: "none"
+  },
+  warning: {
+    color: "#c62828",
+    fontSize: "0.8rem",
+    marginTop: -15,
+    marginBottom: 10
   }
 }));
-const Register = () => {
+const Register = props => {
   const classes = useStyles();
+  const history = useHistory();
+  const [user, setUser] = useState({
+    username: "",
+    password: ""
+  });
+
+  const passwordLength = () => {
+    return user.password.length === 0 || user.password.length > 5 ? (
+      ""
+    ) : (
+      <Typography className={classes.warning}>
+        Password must be at least 6 characters
+      </Typography>
+    );
+  };
+
+  console.log("checking for user", user);
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    props.register(user);
+    history.push("/");
+  };
+
+  const handleChanges = event => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
+  };
 
   return (
     <div className='box'>
@@ -35,18 +76,28 @@ const Register = () => {
         Register
         </Typography>
       <div className={classes.formDiv}>
-        <TextField label="Name"
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        // error 
-        // helperText="Required" 
+
+        <TextField
+          label="Username"
+          required
+          value={user.username}
+          onChange={handleChanges}
+          name="username"
+
         />
         <br />
-        <TextField label="Username" required 
-        variant="outlined"
-        margin="normal"
-        fullWidth/>
+        <TextField
+          label="Password"
+          type="password"
+          required
+          value={user.password}
+          onChange={handleChanges}
+          name="password"
+        />
+
+        <br />
+        {/*
+        <TextField label="Name" error helperText="Required" />
         <br />
         <TextField label="Email" type="email" required 
         variant="outlined"
@@ -57,12 +108,16 @@ const Register = () => {
         variant="outlined"
         margin="normal"
         fullWidth/>
+        */}
+
         <div>
           <Link className={classes.linkBut} to="/Dashboard">
             <Button
               className={classes.contButton}
               variant="outlined"
               color="primary"
+              type="submit"
+              onClick={handleSubmit}
             >
               Register
             </Button>
@@ -79,4 +134,11 @@ const Register = () => {
     </div>
   );
 };
-export default Register;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(
+  mapStateToProps,
+  { register }
+)(Register);

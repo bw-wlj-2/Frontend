@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { makeStyles, Box } from "@material-ui/core";
+import { makeStyles, Box, TextField, Typography } from "@material-ui/core";
+import AxiosWithAuth from "../utils/AxiosWithAuth";
 import { Link } from "react-router-dom";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
-import Typography from "@material-ui/core/Typography";
 import './styles.css';
 import Copyright from './Copyright';
+
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: 20
   }
 }));
-const Login = () => {
+const Login = props => {
   const classes = useStyles();
   const history = useHistory();
   const [users, setUsers] = useState({ username: '', password: '' })
@@ -53,14 +53,49 @@ const Login = () => {
   // }
   const handleSubmit = e => {
     e.preventDefault();
-    axios.post(`https://weight-lifting-backend.herokuapp.com/api/auth/login`, users)
-      .then(res =>
+    axios.post(`https://weight-lifting-backend.herokuapp.com/api/user/login`, users)
+      .then(res => 
         localStorage.setItem('token', res.data.payload),
         // setTimeout(function () { history.push(`/dashboard`) }, 1500))
         history.push(`/dashboard`))
       .catch(err => console.log(err))
     setUsers({ username: '', password: '' })
   }
+
+  //   const [credentials, setCredentials] = useState({
+  //     username: "",
+  //     password: ""
+  //   });
+
+  //   const handleChanges = e => {
+  //     let name = e.target.name;
+  //     setCredentials({ ...credentials, [name]: e.target.value });
+  //   };
+
+  //   const loginForm = e => {
+  //     e.preventDefault();
+  //     axios.post(`https://weight-lifting-backend.herokuapp.com/api/auth/login`, credentials)
+  //       .then(res =>
+  //         localStorage.setItem('token', res.data.payload),
+  //         // setTimeout(function () { history.push(`/dashboard`) }, 1500))
+  //         history.push(`/dashboard`))
+  //       .catch(err => console.log(err))
+  //     setCredentials({ username: '', password: '' })
+  //   }
+  //   console.log(credentials.username);
+  //   console.log(credentials.password);
+  //   console.log(credentials);
+  //   AxiosWithAuth()
+  //     .post("/api/auth/login", credentials)
+  //     .then(res => {
+  //       localStorage.setItem("token", res.data.token);
+  //       localStorage.setItem("userID", res.data.id);
+  //       console.log(res.data);
+
+  //       props.history.push("/dashboard");
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   return (
     <div className='box'>
@@ -93,22 +128,57 @@ const Login = () => {
           // helperText="Required"
           />
 
-          <div>
-            {/* <Link className={classes.linkBut} to="/dashboard"> */}
+          {/* <div className={classes.formDiv}>
+        <TextField
+          label="Username"
+          value={credentials.username}
+          onChange={handleChanges}
+          name="username"
+        />
+        <br />
+        <TextField
+          label="Password"
+          type="password"
+          error
+          helperText="Required"
+          value={credentials.password}
+          onChange={handleChanges}
+          name="password"
+        /> */}
 
-            <Button
-              className={classes.contButton}
-              variant="outlined"
-              color="primary"
-              type='submit'
-            >
-              Login
+          {/* <form onSubmit={handleSubmit}>
+          <div className={classes.formDiv}>
+            <TextField
+              type='text'
+              label="Username"
+            // onChange={handleChange}
+            // value={users.username}
+            />
+            <br />
+            <TextField
+              label="Password"
+              type="password"
+            // onChange={handleChange}
+            // value={users.password}
+            // error
+            // helperText="Required"
+            /> */}
+
+        </div>
+        {/* <Link className={classes.linkBut} to="/dashboard"> */}
+        <div>
+          <Button
+            className={classes.contButton}
+            variant="outlined"
+            color="primary"
+            type='submit'
+          >
+            Login
             </Button>
-            {/* </Link> */}
-            <p>
-              Don't have an account? <Link to="/register">Sign up</Link>
-            </p>
-          </div>
+          {/* </Link> */}
+          <p>
+            Don't have an account? <Link to="/register">Sign up</Link>
+          </p>
         </div>
       </form>
       <Box mt={8}>
@@ -116,5 +186,6 @@ const Login = () => {
       </Box>
     </div>
   );
-};
-export default Login;
+}
+
+export default Login
