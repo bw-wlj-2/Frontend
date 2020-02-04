@@ -28,7 +28,13 @@ const initialState = {
     username: "",
     password: "",
     id: 1
-  }
+  },
+  userExercises: [],
+  users: [],
+  exercises: [],
+  isLoading: false,
+  error: null,
+  editing: false
 };
 
 export const reducers = (state = initialState, action) => {
@@ -88,7 +94,7 @@ export const reducers = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        chefInfo: action.payload,
+        userInfo: action.payload,
         error: ""
       };
     case FETCH_USER_FAILURE:
@@ -109,7 +115,7 @@ export const reducers = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        chefInfo: action.payload,
+        userExercises: action.payload,
         error: ""
       };
     case FETCH_EXERCISE_FAILURE:
