@@ -4,23 +4,22 @@ export const POST_REGISTER_START = "POST_REGISTER_START";
 export const POST_REGISTER_SUCCESS = "POST_REGISTER_SUCCESS";
 export const POST_REGISTER_FAILURE = "POST_REGISTER_FAILURE";
 
-export const CREATE_EXERCISE_START = "CREATE_EXERCISE_START";
-export const CREATE_EXERCISE_SUCCESS = "CREATE_EXERCISE_SUCCESS";
-export const CREATE_EXERCISE_FAILURE = "CREATE_EXERCISE_FAILURE";
-
 export const register = info => {
   return dispatch => {
     dispatch({ type: POST_REGISTER_START });
     console.log(info);
     AxiosWithAuth()
-      .get("/api/auth/register")
+      .post(
+        "https://weight-lifting-backend.herokuapp.com/api/user/register",
+        info
+      )
       .then(res => {
-        console.log(res.data);
-        //res.data ==> activity
+        console.log(res);
+
         dispatch({ type: POST_REGISTER_SUCCESS, payload: res.data });
-        localStorage.setItem("token", res.data.token);
-        console.log("this is the response", res.data);
+        // localStorage.setItem("token", res.data.token);
+        console.log("response", res);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err.res));
   };
 };

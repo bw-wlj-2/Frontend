@@ -1,25 +1,34 @@
-import React, { useState } from 'react'
-import { Menu, MenuItem, Button, Toolbar, AppBar, Link, Typography } from '@material-ui/core';
+import React, { useState } from "react";
+import {
+  Menu,
+  MenuItem,
+  Button,
+  Toolbar,
+  AppBar,
+  Typography
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
+import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
+import { Link } from "react-router-dom";
+import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
     backgroundColor: "#007FFF",
-    color: "#D8F4FF",
+    color: "#D8F4FF"
   },
   menuButton: {
     marginRight: theme.spacing(2)
   },
   title: {
     flexGrow: 1,
-    position: 'absolute',
-    left: '46rem'
+    textAlign: "center",
+    marginLeft: "-3.2%"
   },
   icon: {
-    position: 'absolute',
+    position: "absolute",
     right: "2rem",
-    color: "#D8F4FF"
+    color: "black"
   }
 }));
 
@@ -45,21 +54,25 @@ const NavBar = () => {
         title="Enter User Details"
       >
         <Toolbar>
-          <Button onClick={recordButtonPosition} className={classes.appBar}>OPEN MENU</Button>
+          <Button onClick={recordButtonPosition}>
+            <MenuIcon className={classes.icon} fontSize="small" />
+          </Button>
           <Menu anchorEl={anchorEl} open={menuOpen} onClose={closeMenu}>
             <Link to="/dashboard">
               <MenuItem onClick={closeMenu}> Dashboard </MenuItem>
             </Link>
             <MenuItem onClick={closeMenu}> Exercises </MenuItem>
-            <MenuItem onClick={closeMenu}> Profile </MenuItem>
+            <Link to="/editprofile">
+              <MenuItem onClick={closeMenu}> Edit Profile </MenuItem>
+            </Link>
           </Menu>
           <Typography variant="h6" className={classes.title}>
             Weight-Lifting Journal
           </Typography>
-          <FitnessCenterIcon className={classes.icon} fontSize='small' />
+          <FitnessCenterIcon className={classes.icon} fontSize="small" />
         </Toolbar>
       </AppBar>
     </div>
-  )
-}
-export default NavBar
+  );
+};
+export default NavBar;

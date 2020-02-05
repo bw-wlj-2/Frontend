@@ -1,27 +1,24 @@
-import { makeStyles, Box } from "@material-ui/core";
 import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import {useHistory} from 'react-router-dom';
-
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../actions/EntryActions/RegisterAction";
 
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import Typography from "@material-ui/core/Typography";
-import Copyright from './Copyright';
-
 
 const useStyles = makeStyles(theme => ({
   contButton: {
     margin: 30,
-    backgroundColor: "#007FFF",
-    color: "#D8F4FF",
+    backgroundColor: "#007CB2",
+    color: "#BFECFF",
 
     "&:hover": {
-      backgroundColor: "#D8F4FF",
-      color: "#007FFF"
+      backgroundColor: "#BFECFF",
+      color: "#007CB2"
     }
   },
   formDiv: {
@@ -42,7 +39,9 @@ const Register = props => {
   const history = useHistory();
   const [user, setUser] = useState({
     username: "",
-    password: ""
+    password: "",
+    location: "",
+    avatarUrl: ""
   });
 
   const passwordLength = () => {
@@ -62,28 +61,27 @@ const Register = props => {
     props.register(user);
     history.push("/");
   };
+  console.log(props);
 
   const handleChanges = event => {
     event.preventDefault();
-    const { name, value } = event.target;
-    setUser({ ...user, [name]: value });
+    // const { name, value } = event.target;
+    setUser({ ...user, [event.target.name]: event.target.value });
   };
 
   return (
-    <div className='box'>
+    <div className="box">
       <AccountBoxIcon fontSize="large" />
       <Typography component="h2" variant="h5">
         Register
-        </Typography>
+      </Typography>
       <div className={classes.formDiv}>
-
         <TextField
           label="Username"
           required
           value={user.username}
           onChange={handleChanges}
           name="username"
-
         />
         <br />
         <TextField
@@ -94,7 +92,30 @@ const Register = props => {
           onChange={handleChanges}
           name="password"
         />
+        <TextField
+          label="location"
+          required
+          value={user.location}
+          onChange={handleChanges}
+          name="location"
+        />
         <br />
+        <TextField
+          label="avatar"
+          required
+          value={user.avatarUrl}
+          onChange={handleChanges}
+          name="avatarUrl"
+        />
+
+        <br />
+        {/*
+        <TextField label="Name" error helperText="Required" />
+        <br />
+        <TextField label="Email" type="email" required />
+        <br />
+        */}
+
         <div>
           <Link className={classes.linkBut} to="/Dashboard">
             <Button
@@ -106,15 +127,11 @@ const Register = props => {
             >
               Register
             </Button>
-
           </Link>
           <p>
             Already have an account? <Link to="/">Log in</Link>
           </p>
         </div>
-        <Box mt={8}>
-          <Copyright />
-        </Box>
       </div>
     </div>
   );
