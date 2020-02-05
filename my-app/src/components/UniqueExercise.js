@@ -52,6 +52,7 @@ export default function UniqueExercise(props) {
 
   const handleEdit = e => {
     e.preventDefault();
+    // setTimeout(function () { history.push(`/editExercises/${id}`) }, 5000)
     history.push(`/editExercises/${id}`)
   }
 
@@ -77,21 +78,21 @@ export default function UniqueExercise(props) {
         </CardContent>
         <CardActions disableSpacing>
           <CardContent className={classes.buttonCon}>
-            {/* <Link to="/editexercises" className={classes.linkBut}> */}
-            <Button
-              onClick={handleEdit}
-              className={classes.editBut}
-              variant="contained"
-              color="primary"
-            >
-              Edit
+            <Link to={`/editExercises/${id}`} className={classes.linkBut}>
+              <Button
+                onClick={handleEdit}
+                className={classes.editBut}
+                variant="contained"
+                color="primary"
+              >
+                Edit
               </Button>
-            {/* </Link> */}
+            </Link>
             <Link to="/dashboard" className={classes.linkBut}>
               <Button
                 onClick={handleDelete}
                 className={classes.deleteBut}
-                variant="outined"
+                variant="contained"
                 color="secondary"
               >
                 Delete

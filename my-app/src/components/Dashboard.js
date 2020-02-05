@@ -136,7 +136,7 @@ const Dashboard = props => {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link className={classes.linkBut} to="editprofile">
+                  <Link className={classes.linkBut} to="/editprofile">
                     <Button variant="outlined" color="primary">
                       Edit Profile
                     </Button>

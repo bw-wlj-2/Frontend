@@ -16,39 +16,34 @@ function App() {
   return (
     <Router>
       <div className="App">
+
+        <NavBar />
         <Switch>
           <Route exact path="/">
-            <NavBar />
             <Login />
           </Route>
 
           <Route exact path="/register">
-            <NavBar />
             <Register />
           </Route>
 
           <PrivateRoute exact path="/dashboard">
-            <NavBar />
             <Dashboard />
           </PrivateRoute>
 
           <Route exact path="/editprofile">
-            <NavBar />
             <EditProfilePage />
           </Route>
 
-          <Route path="/exercises/:id">
-            <NavBar />
+          <Route exact path="/exercises/:id">
             <UniqueExercise />
           </Route>
 
           <Route exact path="/addexercise">
-            <NavBar />
             <AddExercise />
           </Route>
 
           <Route exact path="/editExercises/:id">
-            <NavBar />
             <EditExercise />
           </Route>
         </Switch>

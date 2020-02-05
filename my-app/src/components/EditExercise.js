@@ -57,11 +57,10 @@ const EditExercise = () => {
   const handleSubmit = e => {
     e.preventDefault();
     AxiosWithAuth().put(`/api/exercises/${id}`, exer)
-      .then(res =>
-        // console.log(res),
-        // setExer(res),
-        history.push(`/exercises/${id}`)
-      )
+      .then(() => {
+        setTimeout(function () { history.push(`/exercises/${id}`) }, 6000)
+        // history.push(`/exercises/${id}`)
+      })
       .catch(err => console.log(err))
   }
 
@@ -101,14 +100,16 @@ const EditExercise = () => {
             value={exer.date}
           /> */}
         <div>
-          <Button
-            onClick={handleSubmit}
-            className={classes.contButton}
-            variant="outlined"
-            color="primary"
-          >
-            Update
+          <Link to={`/exercises/${id}`}>
+            <Button
+              onClick={handleSubmit}
+              className={classes.contButton}
+              variant="outlined"
+              color="primary"
+            >
+              Update
             </Button>
+          </Link>
           <p>
             Go to<Link to="/dashboard"> Dashboard</Link>
           </p>
