@@ -5,21 +5,10 @@ import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
-
 import Typography from "@material-ui/core/Typography";
 import "./styles.css";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-
-import { ThemeProvider } from "@material-ui/core/styles";
-
-import { createMuiTheme } from "@material-ui/core/styles";
-const theme = createMuiTheme({
-  palette: {
-    type: "dark"
-  }
-});
-
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -39,13 +28,12 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    color: "#898E88"
+    color: "#898E88",
   },
-  contButton: {
+  logButton: {
     margin: theme.spacing(3, 0, 2),
-
     "&:hover": {
-      backgroundColor: "#BFECFF",
+      backgroundColor: "#CCFFC4",
       color: "#007CB2"
     }
   },
@@ -63,7 +51,14 @@ const useStyles = makeStyles(theme => ({
   },
   input: {
     color: "white"
-  }
+  },
+  linkText: {
+    color: "#E2FFCE",
+    textDecoration:"none",
+    "&:hover":{
+      textDecoration:"underline"
+    }
+  },
 }));
 
 // const useStyles = makeStyles(theme => ({
@@ -203,7 +198,7 @@ const Login = props => {
           <div>
             {/* <Link className={classes.linkBut} to="/dashboard"> */}
             <Button
-              className={classes.contButton}
+              className={classes.logButton}
               variant="contained"
               color="primary"
               type="submit"
@@ -214,7 +209,7 @@ const Login = props => {
 
             {/* </Link> */}
             <p>
-              Don't have an account? <Link to="/register">Sign up</Link>
+              Don't have an account? <Link className={classes.linkText} to="/register">Sign up</Link>
             </p>
           </div>
         </form>

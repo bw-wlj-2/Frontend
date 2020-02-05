@@ -10,26 +10,34 @@ import EditProfilePage from "./components/EditProfilePage";
 import UniqueExercise from "./components/UniqueExercise";
 import AddExercise from "./components/AddExercise";
 import EditExercise from "./components/EditExercise";
-
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core/styles";
-function App() {
 
+function App() {
   //FOR DARK MODE
   const theme = React.useMemo(
     () =>
       createMuiTheme({
         palette: {
-          type: "dark"
+          type: "dark",
+          primary: {
+            main: "#99FF8A"
+          },
+          secondary: {
+            main: "#24B30E"
+          }
+        },
+        typography: {
+          fontFamily: "Mallanna, sans-serif"
         }
       }),
     []
   );
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
         <div className="App">
-
           <NavBar />
           <Switch>
             <Route exact path="/">
@@ -63,7 +71,6 @@ function App() {
         </div>
       </Router>
     </ThemeProvider>
-
   );
 }
 
