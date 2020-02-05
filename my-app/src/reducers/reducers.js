@@ -11,17 +11,18 @@ import {
   CREATE_EXERCISE_FAILURE
 } from "../actions/UserActions/CreateExercise";
 
-import {
-  FETCH_USER_START,
-  FETCH_USER_SUCCESS,
-  FETCH_USER_FAILURE
-} from "../actions/UserActions/FetchUser";
 
-import {
-  FETCH_EXERCISE_START,
-  FETCH_EXERCISE_SUCCESS,
-  FETCH_EXERCISE_FAILURE
-} from "../actions/UserActions/FetchExercises";
+// import {
+//   FETCH_USER_START,
+//   FETCH_USER_SUCCESS,
+//   FETCH_USER_FAILURE
+// } from "../actions/UserActions/FetchUser";
+
+// import {
+//   FETCH_EXERCISE_START,
+//   FETCH_EXERCISE_SUCCESS,
+//   FETCH_EXERCISE_FAILURE
+// } from "../actions/UserActions/FetchExercises";
 
 import {
   FETCH_USER_START,
@@ -123,34 +124,12 @@ export const reducers = (state = initialState, action) => {
         isLoading: true,
         error: ""
       };
-    case CREATE_EXERCISE_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        userExercises: action.payload,
-        error: ""
-      };
-    case CREATE_EXERCISE_FAILURE:
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload
-      };
-
-
-    //FETCH USER
-
-    case FETCH_USER_START:
-      return {
-        ...state,
-        isLoading: true,
-        error: ""
-      };
     case FETCH_USER_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        chefInfo: action.payload,
+        userInfo: action.payload,
+        userExercises: action.payload,
         error: ""
       };
     case FETCH_USER_FAILURE:
@@ -160,8 +139,9 @@ export const reducers = (state = initialState, action) => {
         error: action.payload
       };
 
-    //FETCH Exercises Reducer
-    case FETCH_EXERCISE_START:
+    //FETCH USER
+
+    case FETCH_USER_START:
       return {
         ...state,
         isLoading: true,
@@ -171,10 +151,30 @@ export const reducers = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        chefInfo: action.payload,
+        userExercises: action.payload,
         error: ""
       };
     case FETCH_EXERCISE_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+    //Create Exercises
+    case CREATE_EXERCISE_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case CREATE_EXERCISE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        userExercises: action.payload,
+        error: ""
+      };
+    case CREATE_EXERCISE_FAILURE:
       return {
         ...state,
         isLoading: false,

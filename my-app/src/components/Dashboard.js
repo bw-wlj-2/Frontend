@@ -4,19 +4,17 @@ import { connect } from "react-redux";
 import { fetchUser } from "../actions/UserActions/FetchUser";
 import { fetchExercises } from "../actions/UserActions/FetchExercises";
 import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
+// import Card from "@material-ui/core/Card";
+// import CardActions from "@material-ui/core/CardActions";
+// import CardContent from "@material-ui/core/CardContent";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
-
-import axios from "axios";
-
 import AxiosWithAuth from "../utils/AxiosWithAuth";
+import ExCard from './ExCard';
 
 
 function Copyright() {
@@ -73,25 +71,25 @@ const Dashboard = props => {
   const history = useHistory();
   const classes = useStyles();
 
+  const [exercises, setExercises] = useState([]);
 
-  const [exercises, setExercises] = useState();
 
-//   console.log("checking for exercise", exercises);
+  //   console.log("checking for exercise", exercises);
 
-//   useEffect(() => {
-//     props.fetchUser(userID);
-//   }, []);
-//   console.log("this is props", props);
+  //   useEffect(() => {
+  //     props.fetchUser(userID);
+  //   }, []);
+  //   console.log("this is props", props);
 
-//   useEffect(() => {
-//     props.fetchExercises(userID);
-//     setExercises(props.userExercises);
-//   }, [exercises]);
-//   console.log("this is props", props);
+  //   useEffect(() => {
+  //     props.fetchExercises(userID);
+  //     setExercises(props.userExercises);
+  //   }, [exercises]);
+  //   console.log("this is props", props);
 
-//   const [exercises, setExercises] = useState([]);
+  //   const [exercises, setExercises] = useState([]);
 
-//   console.log("checking for exercise", exercises);
+  //   console.log("checking for exercise", exercises);
 
   // useEffect(() => {
   //   props.fetchUser(userID);
@@ -114,7 +112,6 @@ const Dashboard = props => {
         console.log("exercise list err", err);
       });
   }, []);
-
 
   const editProfile = event => {
     event.preventDefault();
@@ -156,7 +153,7 @@ const Dashboard = props => {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link className={classes.linkBut} to="editprofile">
+                  <Link className={classes.linkBut} to="/editprofile">
                     <Button variant="outlined">
                       Edit Profile
                     </Button>
@@ -169,29 +166,8 @@ const Dashboard = props => {
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {exercises.map(card => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {card.name}
-                    </Typography>
-                    <Typography>InsertDate</Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Link to="/exercises" className={classes.linkBut}>
-                      <Button size="small">
-                        View
-                      </Button>
-                    </Link>
-                    <Link to="/editexercises" className={classes.linkBut}>
-                      <Button size="small">
-                        Edit
-                      </Button>
-                    </Link>
-                  </CardActions>
-                </Card>
-              </Grid>
+            {exercises.map(ex => (
+              <ExCard ex={ex} key={ex.id} />
             ))}
           </Grid>
         </Container>
@@ -219,4 +195,3 @@ export default connect(
   mapStateToProps,
   { fetchUser, fetchExercises }
 )(Dashboard);
-

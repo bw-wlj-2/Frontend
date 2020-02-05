@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 import Typography from "@material-ui/core/Typography";
@@ -221,69 +220,65 @@ const Login = props => {
         </form>
       </div>
 
-   
-//     <div className="box">
-//       <AccountBoxIcon fontSize="large" />
-//       <Typography component="h2" variant="h5">
-//         Log In
-//       </Typography>
-//       <form className={classes.form} onSubmit={loginForm}>
-//         <div className={classes.formDiv}>
-//           <TextField
-//             label="Username"
-//             value={credentials.username}
-//             onChange={handleChanges}
-//             name="username"
-//           />
-//           <br />
-//           <TextField
-//             label="Password"
-//             type="password"
-//             error
-//             helperText="Required"
-//             value={credentials.password}
-//             onChange={handleChanges}
-//             name="password"
-//           />
-//         </div>
-//         {/*
-// //       <form onSubmit={handleSubmit}>
-// //         <div className={classes.formDiv}>
-// //           <TextField
-// //             type='text'
-// //             label="Username"
-// //           // onChange={handleChange}
-// //           // value={users.username}
-// //           />
-// //           <br />
-// //           <TextField
-// //             label="Password"
-// //             type="password"
-// //           // onChange={handleChange}
-// //           // value={users.password}
-// //           // error
-// //           // helperText="Required"
-// //           />
-// */}
 
-//         <div>
-//           {/* <Link className={classes.linkBut} to="/dashboard"> */}
-//           <Button
-//             className={classes.contButton}
-//             variant="outlined"
-//             color="primary"
-//             type="submit"
-//           >
-//             Login
-//           </Button>
+      {/* </div> <div className="box">
+       <AccountBoxIcon fontSize="large" />
+       <Typography component="h2" variant="h5">
+         Log In
+       </Typography>
+       <form className={classes.form} onSubmit={loginForm}>
+         <div className={classes.formDiv}>
+            <TextField
+            label="Username"
+            value={credentials.username}
+            onChange={handleChanges}
+            name="username"
+          />
+          <br />
+          <TextField
+            label="Password"
+            type="password"
+            error
+            helperText="Required"
+            value={credentials.password}
+            onChange={handleChanges}
+            name="password"
+          />
+        </div>
+       <form onSubmit={handleSubmit}>
+         <div className={classes.formDiv}>
+           <TextField
+             type='text'
+             label="Username"
+            onChange={handleChange}
+            value={users.username}
+           />
+           <br />
+           <TextField
+             label="Password"
+             type="password"
+            onChange={handleChange}
+            value={users.password}
+            error
+            helperText="Required"
+           />
 
-//           {/* </Link> */}
-//           <p>
-//             Don't have an account? <Link to="/register">Sign up</Link>
-//           </p>
-//         </div>
-//       </form>
+        <div>
+          <Button
+            className={classes.contButton}
+            variant="outlined"
+            color="primary"
+            type="submit"
+          >
+            Login
+          </Button>
 
+          {/* </Link> */}
+      {/* <p>
+            Don't have an account? <Link to="/register">Sign up</Link>
+          </p>
+        </div> */}
+      {/* </form> */}
     </div>
   );
 };
