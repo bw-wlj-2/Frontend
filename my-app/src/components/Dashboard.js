@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
@@ -14,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
+import AxiosWithAuth from "../utils/AxiosWithAuth";
 
 function Copyright() {
   return (
@@ -62,36 +62,43 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
+// const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const Dashboard = props => {
   const userID = localStorage.getItem("userID");
   const history = useHistory();
-    const classes = useStyles();
+  const classes = useStyles();
 
-  const [exercises, setExercises] = useState();
+  const [exercises, setExercises] = useState([]);
 
   console.log("checking for exercise", exercises);
 
+  // useEffect(() => {
+  //   props.fetchUser(userID);
+  // }, []);
+  // console.log("this is props", props);
+  //
+  // useEffect(() => {
+  //   props.fetchExercises(userID);
+  //   setExercises(props.userExercises);
+  // }, [exercises]);
+  // console.log("this is props", props);
   useEffect(() => {
-    props.fetchUser(userID);
+    AxiosWithAuth()
+      .get("/api/exercises")
+      .then(res => {
+        console.log("exercise list", res);
+        setExercises(res.data);
+      })
+      .catch(err => {
+        console.log("exercise list err", err);
+      });
   }, []);
-  console.log("this is props", props);
-
-  useEffect(() => {
-    props.fetchExercises(userID);
-    setExercises(props.userExercises);
-  }, [exercises]);
-  console.log("this is props", props);
 
   const editProfile = event => {
     event.preventDefault();
     history.push("/editprofile");
   };
-
-
-
 
   return (
     <div>
@@ -108,7 +115,7 @@ const Dashboard = props => {
               color="textPrimary"
               gutterBottom
             >
-              Welcome, InsertNameHere!
+              Welcome, {props.userInfo.username}!
             </Typography>
             <Typography
               variant="h5"
@@ -141,12 +148,12 @@ const Dashboard = props => {
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map(card => (
+            {exercises.map(card => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      InsertWorkoutName
+                      {card.name}
                     </Typography>
                     <Typography>InsertDate</Typography>
                   </CardContent>
@@ -176,7 +183,6 @@ const Dashboard = props => {
       {/* End footer */}
     </div>
   );
-
 };
 
 const mapStateToProps = state => {
@@ -187,5 +193,3 @@ export default connect(
   mapStateToProps,
   { fetchUser, fetchExercises }
 )(Dashboard);
-
-
