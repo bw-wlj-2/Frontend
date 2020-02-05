@@ -7,7 +7,7 @@ import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link, useHistory, useParams } from "react-router-dom";
-import AxiosWithAuth from '../utils/AxiosWithAuth';
+import AxiosWithAuth from "../utils/AxiosWithAuth";
 
 const useStyles = makeStyles(theme => ({
   buttonCon: {
@@ -40,30 +40,33 @@ export default function UniqueExercise(props) {
   const { id } = useParams();
   // console.log(id)
   const history = useHistory();
+  console.log(unique);
 
   useEffect(() => {
-    AxiosWithAuth().get(`/api/exercises/${id}`)
+    AxiosWithAuth()
+      .get(`/api/exercises/${id}`)
       .then(res =>
         // console.log(res),
         setUnique(res.data)
       )
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }, [id]);
 
   const handleEdit = e => {
     e.preventDefault();
     // setTimeout(function () { history.push(`/editExercises/${id}`) }, 5000)
-    history.push(`/editExercises/${id}`)
-  }
+    history.push(`/editExercises/${id}`);
+  };
 
   const handleDelete = e => {
     e.preventDefault();
-    AxiosWithAuth().delete(`/api/exercises/${id}`)
+    AxiosWithAuth()
+      .delete(`/api/exercises/${id}`)
       .then(() => {
-        history.push(`/dashboard`)
+        history.push(`/dashboard`);
       })
-      .catch(err => console.log(err))
-  }
+      .catch(err => console.log(err));
+  };
 
   // console.log(unique)
   return (
@@ -74,7 +77,15 @@ export default function UniqueExercise(props) {
           <Typography variant="body2" color="textPrimary" component="p">
             Region: {unique.region}
           </Typography>
-
+          <Typography variant="body2" color="textPrimary" component="p">
+            Reps: {unique.reps}
+          </Typography>
+          <Typography variant="body2" color="textPrimary" component="p">
+            Reps: {unique.current_pounds}
+          </Typography>
+          <Typography variant="body2" color="textPrimary" component="p">
+            Reps: {unique.date_completed}
+          </Typography>
         </CardContent>
         <CardActions disableSpacing>
           <CardContent className={classes.buttonCon}>
