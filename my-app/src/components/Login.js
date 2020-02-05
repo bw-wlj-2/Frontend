@@ -5,9 +5,21 @@ import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
+
 import Typography from "@material-ui/core/Typography";
 import "./styles.css";
+import Avatar from "@material-ui/core/Avatar";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+
+import { ThemeProvider } from "@material-ui/core/styles";
+
+import { createMuiTheme } from "@material-ui/core/styles";
+const theme = createMuiTheme({
+  palette: {
+    type: "dark"
+  }
+});
+
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -22,10 +34,15 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1
   },
+  container: {
+    marginTop: 90,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    color: "#898E88"
+  },
   contButton: {
-    margin: 30,
-    backgroundColor: "#007CB2",
-    color: "#BFECFF",
+    margin: theme.spacing(3, 0, 2),
 
     "&:hover": {
       backgroundColor: "#BFECFF",
@@ -36,9 +53,42 @@ const useStyles = makeStyles(theme => ({
     textDecoration: "none"
   },
   formDiv: {
-    marginTop: 20
+    marginTop: 20,
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1)
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main
+  },
+  input: {
+    color: "white"
   }
 }));
+
+// const useStyles = makeStyles(theme => ({
+//   paper: {
+//     marginTop: theme.spacing(8),
+//     display: "flex",
+//     flexDirection: "column",
+//     alignItems: "center"
+//   },
+//   avatar: {
+//     margin: theme.spacing(1),
+//     backgroundColor: theme.palette.secondary.main
+//   },
+//   form: {
+//     width: "100%", // Fix IE 11 issue.
+//     marginTop: theme.spacing(1)
+//   },
+//   submit: {
+//     margin: theme.spacing(3, 0, 2)
+//   },
+//   linkBut: {
+//     textDecoration: "none"
+//   }
+// }));
+
 const Login = props => {
   const classes = useStyles();
   const history = useHistory();
@@ -89,14 +139,96 @@ const Login = props => {
   };
 
   return (
-    <div className="box">
-      <AccountBoxIcon fontSize="large" />
-      <Typography component="h2" variant="h5">
-        Log In
-      </Typography>
-      <form className={classes.form} onSubmit={loginForm}>
-        <div className={classes.formDiv}>
-          <TextField
+
+    <div>
+      {/* <AccountBoxIcon fontSize="large" />
+          <Typography component="h2" variant="h5">
+            Log In
+          </Typography> */}
+      <div className={classes.container}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+
+        <form className={classes.form} onSubmit={loginForm}>
+          <div className={classes.formDiv}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              label="Username"
+              value={credentials.username}
+              onChange={handleChanges}
+              name="username"
+              autoFocus
+            />
+
+            <br />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              label="Password"
+              type="password"
+              value={credentials.password}
+              onChange={handleChanges}
+              name="password"
+            />
+          </div>
+          {/*
+    //       <form onSubmit={handleSubmit}>
+    //         <div className={classes.formDiv}>
+    //           <TextField
+    //             type='text'
+    //             label="Username"
+    //           // onChange={handleChange}
+    //           // value={users.username}
+    //           />
+    //           <br />
+    //           <TextField
+    //             label="Password"
+    //             type="password"
+    //           // onChange={handleChange}
+    //           // value={users.password}
+    //           // error
+    //           // helperText="Required"
+    //           />
+    */}
+
+          <div>
+            {/* <Link className={classes.linkBut} to="/dashboard"> */}
+            <Button
+              className={classes.contButton}
+              variant="contained"
+              color="primary"
+              type="submit"
+              fullWidth
+            >
+              Login
+            </Button>
+
+            {/* </Link> */}
+            <p>
+              Don't have an account? <Link to="/register">Sign up</Link>
+            </p>
+          </div>
+        </form>
+      </div>
+
+
+      {/* </div> <div className="box">
+       <AccountBoxIcon fontSize="large" />
+       <Typography component="h2" variant="h5">
+         Log In
+       </Typography>
+       <form className={classes.form} onSubmit={loginForm}>
+         <div className={classes.formDiv}>
+            <TextField
             label="Username"
             value={credentials.username}
             onChange={handleChanges}
@@ -113,28 +245,25 @@ const Login = props => {
             name="password"
           />
         </div>
-        {/*
-//       <form onSubmit={handleSubmit}>
-//         <div className={classes.formDiv}>
-//           <TextField
-//             type='text'
-//             label="Username"
-//           // onChange={handleChange}
-//           // value={users.username}
-//           />
-//           <br />
-//           <TextField
-//             label="Password"
-//             type="password"
-//           // onChange={handleChange}
-//           // value={users.password}
-//           // error
-//           // helperText="Required"
-//           />
-*/}
+       <form onSubmit={handleSubmit}>
+         <div className={classes.formDiv}>
+           <TextField
+             type='text'
+             label="Username"
+            onChange={handleChange}
+            value={users.username}
+           />
+           <br />
+           <TextField
+             label="Password"
+             type="password"
+            onChange={handleChange}
+            value={users.password}
+            error
+            helperText="Required"
+           />
 
         <div>
-          {/* <Link className={classes.linkBut} to="/dashboard"> */}
           <Button
             className={classes.contButton}
             variant="outlined"
@@ -145,11 +274,11 @@ const Login = props => {
           </Button>
 
           {/* </Link> */}
-          <p>
+      {/* <p>
             Don't have an account? <Link to="/register">Sign up</Link>
           </p>
-        </div>
-      </form>
+        </div> */}
+      {/* </form> */}
     </div>
   );
 };

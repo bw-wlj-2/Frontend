@@ -23,12 +23,16 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
     textAlign: "center",
-    marginLeft: "-3.2%"
+    marginLeft: "-8.5%",
+    fontFamily: "Concert One, cursive"
   },
   icon: {
     position: "absolute",
     right: "2rem",
     color: "black"
+  },
+  linkBut: {
+    textDecoration: "none"
   }
 }));
 
@@ -55,19 +59,21 @@ const NavBar = () => {
       >
         <Toolbar>
           <Button onClick={recordButtonPosition}>
-            <MenuIcon className={classes.icon} fontSize="small" />
+            <MenuIcon className={classes.icon} fontSize="medium" />
           </Button>
           <Menu anchorEl={anchorEl} open={menuOpen} onClose={closeMenu}>
-            <Link to="/dashboard">
+            <Link className={classes.linkBut} to="/dashboard">
               <MenuItem onClick={closeMenu}> Dashboard </MenuItem>
             </Link>
-            <MenuItem onClick={closeMenu}> Exercises </MenuItem>
-            <Link to="/editprofile">
+            <Link className={classes.linkBut} to="/exercises">
+              <MenuItem onClick={closeMenu}> Exercises </MenuItem>
+            </Link>
+            <Link className={classes.linkBut} to="/editprofile">
               <MenuItem onClick={closeMenu}> Edit Profile </MenuItem>
             </Link>
           </Menu>
-          <Typography variant="h6" className={classes.title}>
-            Weight-Lifting Journal
+          <Typography variant="h4" className={classes.title}>
+            SIMPLY FIT
           </Typography>
           <FitnessCenterIcon className={classes.icon} fontSize="small" />
         </Toolbar>

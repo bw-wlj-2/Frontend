@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 import ExCard from './ExCard';
 
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -72,7 +73,23 @@ const Dashboard = props => {
 
   const [exercises, setExercises] = useState([]);
 
-  console.log("checking for exercise", exercises);
+
+  //   console.log("checking for exercise", exercises);
+
+  //   useEffect(() => {
+  //     props.fetchUser(userID);
+  //   }, []);
+  //   console.log("this is props", props);
+
+  //   useEffect(() => {
+  //     props.fetchExercises(userID);
+  //     setExercises(props.userExercises);
+  //   }, [exercises]);
+  //   console.log("this is props", props);
+
+  //   const [exercises, setExercises] = useState([]);
+
+  //   console.log("checking for exercise", exercises);
 
   // useEffect(() => {
   //   props.fetchUser(userID);
@@ -124,20 +141,20 @@ const Dashboard = props => {
               color="textSecondary"
               paragraph
             >
-              Location: InserLocationHere
+              Location: Insert Location Here!
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Link className={classes.linkBut} to="/addexercise">
-                    <Button variant="contained" color="primary">
+                    <Button variant="contained">
                       Add Exercise
                     </Button>
                   </Link>
                 </Grid>
                 <Grid item>
                   <Link className={classes.linkBut} to="/editprofile">
-                    <Button variant="outlined" color="primary">
+                    <Button variant="outlined">
                       Edit Profile
                     </Button>
                   </Link>
@@ -150,7 +167,7 @@ const Dashboard = props => {
           {/* End hero unit */}
           <Grid container spacing={4}>
             {exercises.map(ex => (
-              <ExCard ex={ex} key={ex.id}/>
+              <ExCard ex={ex} key={ex.id} />
             ))}
           </Grid>
         </Container>
@@ -168,6 +185,11 @@ const Dashboard = props => {
 const mapStateToProps = state => {
   return state;
 };
+
+
+// export default connect(mapStateToProps, { fetchUser, fetchExercises })(
+//   Dashboard
+// );
 
 export default connect(
   mapStateToProps,
