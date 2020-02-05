@@ -14,21 +14,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
-import ExCard from './ExCard';
+import ExCard from "./ExCard";
+import CopyRight from "./CopyRight";
 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" to="/">
-        Weight-Lifting Journal
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 const useStyles = makeStyles(theme => ({
   icon: {
     marginRight: theme.spacing(2)
@@ -64,8 +52,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+//COPYRIGHT FOOTER, GOES IN DASHBOARD
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {"Copyright © "}
+//       <Link color="primary" to="/">
+//         Weight-Lifting Journal
+//       </Link>{" "}
+//       {new Date().getFullYear()}
+//       {"."}
+//     </Typography>
+//   );
+// }
 
+//MAIN DASHBOARD COMPONENT
 const Dashboard = props => {
   const userID = localStorage.getItem("userID");
   const history = useHistory();
@@ -73,6 +74,7 @@ const Dashboard = props => {
 
   const [exercises, setExercises] = useState([]);
 
+  // console.log('dashboardUSERID', history);
 
   //   console.log("checking for exercise", exercises);
 
@@ -133,7 +135,7 @@ const Dashboard = props => {
               color="textPrimary"
               gutterBottom
             >
-              Welcome, {props.userInfo.username}!
+              Welcome to your worst nightmare...
             </Typography>
             <Typography
               variant="h5"
@@ -147,16 +149,12 @@ const Dashboard = props => {
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Link className={classes.linkBut} to="/addexercise">
-                    <Button variant="contained">
-                      Add Exercise
-                    </Button>
+                    <Button variant="contained">Add Exercise</Button>
                   </Link>
                 </Grid>
                 <Grid item>
                   <Link className={classes.linkBut} to="/editprofile">
-                    <Button variant="outlined">
-                      Edit Profile
-                    </Button>
+                    <Button variant="outlined">Edit Profile</Button>
                   </Link>
                 </Grid>
               </Grid>
@@ -175,7 +173,7 @@ const Dashboard = props => {
 
       {/* Footer */}
       <footer className={classes.footer}>
-        <Copyright />
+        <CopyRight />
       </footer>
       {/* End footer */}
     </div>
@@ -186,12 +184,10 @@ const mapStateToProps = state => {
   return state;
 };
 
-
 // export default connect(mapStateToProps, { fetchUser, fetchExercises })(
 //   Dashboard
 // );
 
-export default connect(
-  mapStateToProps,
-  { fetchUser, fetchExercises }
-)(Dashboard);
+export default connect(mapStateToProps, { fetchUser, fetchExercises })(
+  Dashboard
+);

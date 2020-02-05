@@ -5,21 +5,10 @@ import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
-
 import Typography from "@material-ui/core/Typography";
 import "./styles.css";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-
-import { ThemeProvider } from "@material-ui/core/styles";
-
-import { createMuiTheme } from "@material-ui/core/styles";
-const theme = createMuiTheme({
-  palette: {
-    type: "dark"
-  }
-});
-
 
 const useStyles = makeStyles(theme => ({
   appBar: {

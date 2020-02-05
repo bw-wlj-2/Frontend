@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles(theme => ({
   contButton: {
     margin: 30,
-    backgroundColor: "#007CB2",
+    // backgroundColor: "#007CB2",
     color: "#BFECFF",
 
     "&:hover": {
@@ -48,8 +48,8 @@ const EditProfilePage = () => {
           <Link className={classes.linkBut} to="/Dashboard">
             <Button
               className={classes.contButton}
-              variant="outlined"
-              color="primary"
+              variant="contained"
+              color="secondary"
             >
               Submit
             </Button>

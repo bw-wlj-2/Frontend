@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -39,7 +39,15 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(6)
   },
   linkBut: {
-    textDecoration: "none"
+    textDecoration: "none",
+  },
+  cardBut: {
+    "&:hover": {
+      color: "#E2FFCE"
+    }
+  },
+  cardActs: {
+    margin: "auto"
   }
 }));
 
@@ -55,11 +63,9 @@ const ExCard = ({ ex }) => {
           </Typography>
           <Typography>Region: {ex.region}</Typography>
         </CardContent>
-        <CardActions>
-          <Link to={`/exercises/${ex.id}`}>
-            <Button size="small" color="primary">
-              View
-            </Button>
+        <CardActions className={classes.cardActs}>
+          <Link className={classes.linkBut} to={`/exercises/${ex.id}`}>
+            <Button className={classes.cardBut} size="small">View details</Button>
           </Link>
           {/* <Link to="/editexercises" className={classes.linkBut}>
             <Button size="small" color="primary">
@@ -69,7 +75,7 @@ const ExCard = ({ ex }) => {
         </CardActions>
       </Card>
     </Grid>
-  )
-}
+  );
+};
 
-export default ExCard
+export default ExCard;

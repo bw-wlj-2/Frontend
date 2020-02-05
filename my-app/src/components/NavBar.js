@@ -14,25 +14,38 @@ import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
-    backgroundColor: "#007FFF",
-    color: "#D8F4FF"
+    backgroundColor: "#5B7648",
+    color: "#E2FFCE",
+    justifyContent: "space-around"
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: 0,
+    position: "absolute"
   },
   title: {
     flexGrow: 1,
     textAlign: "center",
-    marginLeft: "-8.5%",
+    margin: "auto",
     fontFamily: "Concert One, cursive"
+  },
+  menuIcon: {
+    position: "absolute",
+    color: "#E2FFCE"
   },
   icon: {
     position: "absolute",
     right: "2rem",
-    color: "black"
+    color: "#E2FFCE"
   },
   linkBut: {
     textDecoration: "none"
+  },
+  // iconButton: {
+  //   padding: 0
+  // },
+  menuItems: {
+    color: "#E2FFCE",
+    // backgroundColor: "#5B7648"
   }
 }));
 
@@ -58,18 +71,21 @@ const NavBar = () => {
         title="Enter User Details"
       >
         <Toolbar>
-          <Button onClick={recordButtonPosition}>
-            <MenuIcon className={classes.icon} fontSize="medium" />
+          <Button className={classes.menuButton} onClick={recordButtonPosition}>
+            <MenuIcon className={classes.menuIcon} fontSize="medium" />
           </Button>
           <Menu anchorEl={anchorEl} open={menuOpen} onClose={closeMenu}>
             <Link className={classes.linkBut} to="/dashboard">
-              <MenuItem onClick={closeMenu}> Dashboard </MenuItem>
+              <MenuItem className={classes.menuItems} onClick={closeMenu}> Dashboard </MenuItem>
             </Link>
             <Link className={classes.linkBut} to="/exercises">
-              <MenuItem onClick={closeMenu}> Exercises </MenuItem>
+              <MenuItem className={classes.menuItems} onClick={closeMenu}> Exercises </MenuItem>
             </Link>
             <Link className={classes.linkBut} to="/editprofile">
-              <MenuItem onClick={closeMenu}> Edit Profile </MenuItem>
+              <MenuItem className={classes.menuItems} onClick={closeMenu}> Edit Profile </MenuItem>
+            </Link>
+            <Link className={classes.linkBut} to="/">
+              <MenuItem className={classes.menuItems} onClick={closeMenu}> Logout </MenuItem>
             </Link>
           </Menu>
           <Typography variant="h4" className={classes.title}>
