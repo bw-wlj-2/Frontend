@@ -9,7 +9,7 @@ import {
   CREATE_EXERCISE_START,
   CREATE_EXERCISE_SUCCESS,
   CREATE_EXERCISE_FAILURE
-} from "../actions/EntryActions/RegisterAction";
+} from "../actions/UserActions/CreateExercise";
 
 import {
   FETCH_USER_START,
@@ -62,26 +62,6 @@ export const reducers = (state = initialState, action) => {
         error: ""
       };
 
-    //Create Exercise Reducer
-    case CREATE_EXERCISE_START:
-      return {
-        ...state,
-        isLoading: true,
-        error: ""
-      };
-    case CREATE_EXERCISE_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        recipes: action.payload
-      };
-    case CREATE_EXERCISE_FAILURE:
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload
-      };
-
     //FETCH USER
 
     case FETCH_USER_START:
@@ -119,6 +99,26 @@ export const reducers = (state = initialState, action) => {
         error: ""
       };
     case FETCH_EXERCISE_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+    //Create Exercises
+    case CREATE_EXERCISE_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case CREATE_EXERCISE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        userExercises: action.payload,
+        error: ""
+      };
+    case CREATE_EXERCISE_FAILURE:
       return {
         ...state,
         isLoading: false,
