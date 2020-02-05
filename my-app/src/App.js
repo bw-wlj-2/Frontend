@@ -11,48 +11,64 @@ import UniqueExercise from "./components/UniqueExercise";
 import AddExercise from "./components/AddExercise";
 import EditExercise from "./components/EditExercise";
 
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from "@material-ui/core/styles";
 function App() {
+
+  //FOR DARK MODE
+  const theme = React.useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          type: "dark"
+        }
+      }),
+    []
+  );
+
   return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route exact path="/">
-            <NavBar />
-            <Login />
-          </Route>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route exact path="/">
+              <NavBar />
+              <Login />
+            </Route>
 
-          <Route exact path="/register">
-            <NavBar />
-            <Register />
-          </Route>
+            <Route exact path="/register">
+              <NavBar />
+              <Register />
+            </Route>
 
-          <PrivateRoute exact path="/dashboard">
-            <NavBar />
-            <Dashboard />
-          </PrivateRoute>
+            <PrivateRoute exact path="/dashboard">
+              <NavBar />
+              <Dashboard />
+            </PrivateRoute>
 
-          <Route exact path="/editprofile">
-            <NavBar />
-            <EditProfilePage />
-          </Route>
+            <Route exact path="/editprofile">
+              <NavBar />
+              <EditProfilePage />
+            </Route>
 
-          <Route path="/exercises">
-            <NavBar />
-            <UniqueExercise />
-          </Route>
+            <Route path="/exercises">
+              <NavBar />
+              <UniqueExercise />
+            </Route>
 
-          <Route exact path="/addexercise">
-            <NavBar />
-            <AddExercise />
-          </Route>
+            <Route exact path="/addexercise">
+              <NavBar />
+              <AddExercise />
+            </Route>
 
-          <Route exact path="/editexercises">
-            <NavBar />
-            <EditExercise />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+            <Route exact path="/editexercises">
+              <NavBar />
+              <EditExercise />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
