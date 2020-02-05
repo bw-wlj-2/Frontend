@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import AxiosWithAuth from '../utils/AxiosWithAuth';
 import EditIcon from '@material-ui/icons/Edit';
 
+
 const useStyles = makeStyles(theme => ({
   container:{
     margin: 100,
@@ -39,42 +40,46 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const initialValue = {
-  name: '',
-  region: '',
-}
+  name: "",
+  region: ""
+};
 
 const EditExercise = () => {
   const classes = useStyles();
   const history = useHistory();
   const { id } = useParams();
-  console.log(id)
-  const [exer, setExer] = useState(initialValue)
+  console.log(id);
+  const [exer, setExer] = useState(initialValue);
 
   useEffect(() => {
-    AxiosWithAuth().get(`/api/exercises/${id}`)
+    AxiosWithAuth()
+      .get(`/api/exercises/${id}`)
       .then(res =>
         // console.log(res),
         setExer(res.data)
       )
-      .catch(err => console.log(err))
-  }, [id])
+      .catch(err => console.log(err));
+  }, [id]);
 
   const handleChange = e => {
     setExer({
       ...exer,
       [e.target.name]: e.target.value
-    })
-  }
+    });
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    AxiosWithAuth().put(`/api/exercises/${id}`, exer)
+    AxiosWithAuth()
+      .put(`/api/exercises/${id}`, exer)
       .then(() => {
-        setTimeout(function () { history.push(`/exercises/${id}`) }, 6000)
+        setTimeout(function() {
+          history.push(`/exercises/${id}`);
+        }, 6000);
         // history.push(`/exercises/${id}`)
       })
-      .catch(err => console.log(err))
-  }
+      .catch(err => console.log(err));
+  };
 
   return (
     <div className={classes.container}>
@@ -85,32 +90,39 @@ const EditExercise = () => {
       <div className={classes.formDiv}>
         <TextField
           label="Exercise Name"
-          name='name'
+          name="name"
           onChange={handleChange}
           value={exer.name}
         />
         <br />
         <TextField
           label="Region Targeted"
-          name='region'
+          name="region"
           onChange={handleChange}
           value={exer.region}
         />
         <br />
-        {/* <TextField
-            type='number'
-            label="Weight (lbs)"
-            name='weight'
-            onChange={handleChange}
-            value={exer.weight}
-          />
-          <br />
-          <TextField
-            label="Date Completed"
-            name='date'
-            onChange={handleChange}
-            value={exer.date}
-          /> */}
+        <TextField
+          type="number"
+          label="Weight (lbs)"
+          name="current_pounds"
+          onChange={handleChange}
+          value={exer.current_pounds}
+        />
+        <br />
+        <TextField
+          label="Reps"
+          name="reps"
+          onChange={handleChange}
+          value={exer.reps}
+        />
+        <br />
+        <TextField
+          label="Date Completed"
+          name="date_completed"
+          onChange={handleChange}
+          value={exer.date_completed}
+        />
         <div>
           <Link className={classes.linkBut} to={`/exercises/${id}`}>
             <Button

@@ -59,6 +59,7 @@ const useStyles = makeStyles(theme => ({
 
 const ExCard = ({ ex }) => {
   const classes = useStyles();
+  console.log(ex);
 
   return (
     <Grid item key={ex.id} xs={12} sm={6} md={4}>
@@ -68,7 +69,9 @@ const ExCard = ({ ex }) => {
             {ex.name}
           </Typography>
           <Typography>Region: {ex.region}</Typography>
-          
+          <Typography> date: {ex.date_completed}</Typography>
+          <Typography>Reps: {ex.reps}</Typography>
+          <Typography> Current lbs: {ex.current_pounds}</Typography>
         </CardContent>
         <CardActions className={classes.cardActs}>
           <Link className={classes.linkBut} to={`/exercises/${ex.id}`}>
