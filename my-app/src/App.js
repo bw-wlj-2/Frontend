@@ -21,10 +21,10 @@ function App() {
         palette: {
           type: "dark",
           primary: {
-            main: "#DDD06A"
+            main: "#99FF8A"
           },
           secondary: {
-            main: "#5B7648"
+            main: "#24B30E"
           }
         },
         typography: {

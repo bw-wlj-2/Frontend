@@ -45,10 +45,26 @@ const useStyles = makeStyles(theme => ({
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6)
+    padding: theme.spacing(4),
+    position: "absolute",
+    bottom: 0,
+    width: "100%"
   },
   linkBut: {
     textDecoration: "none"
+  },
+  editBut:{
+    color:"white",
+    "&:hover": {
+      backgroundColor: "#CCFFC4",
+      color: "#007CB2"
+    }
+  },
+  addBut:{
+    "&:hover": {
+      backgroundColor: "#CCFFC4",
+      color: "#007CB2"
+    }
   }
 }));
 
@@ -143,18 +159,18 @@ const Dashboard = props => {
               color="textSecondary"
               paragraph
             >
-              Location: Insert Location Here!
+              {/* Location: Insert Location Here! */}
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Link className={classes.linkBut} to="/addexercise">
-                    <Button variant="contained">Add Exercise</Button>
+                    <Button className={classes.addBut} variant="contained" color="primary">Add Exercise</Button>
                   </Link>
                 </Grid>
                 <Grid item>
                   <Link className={classes.linkBut} to="/editprofile">
-                    <Button variant="outlined">Edit Profile</Button>
+                    <Button className={classes.editBut} variant="outlined" color="secondary">Edit Profile</Button>
                   </Link>
                 </Grid>
               </Grid>

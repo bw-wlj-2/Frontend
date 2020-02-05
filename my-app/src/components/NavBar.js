@@ -78,9 +78,6 @@ const NavBar = () => {
             <Link className={classes.linkBut} to="/dashboard">
               <MenuItem className={classes.menuItems} onClick={closeMenu}> Dashboard </MenuItem>
             </Link>
-            <Link className={classes.linkBut} to="/exercises">
-              <MenuItem className={classes.menuItems} onClick={closeMenu}> Exercises </MenuItem>
-            </Link>
             <Link className={classes.linkBut} to="/editprofile">
               <MenuItem className={classes.menuItems} onClick={closeMenu}> Edit Profile </MenuItem>
             </Link>

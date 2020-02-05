@@ -7,15 +7,20 @@ import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import Typography from "@material-ui/core/Typography";
 import { createExercise } from "../actions/UserActions/CreateExercise.js";
 import { connect } from "react-redux";
+import PostAddIcon from "@material-ui/icons/PostAdd";
 
 const useStyles = makeStyles(theme => ({
+  container: {
+    margin: 100,
+    color: "#898E88"
+  },
+  addIcon: {
+    color: "#99FF8A"
+  },
   contButton: {
-    margin: 30,
-    backgroundColor: "#007CB2",
-    color: "#BFECFF",
-
+    margin: theme.spacing(3, 0, 2),
     "&:hover": {
-      backgroundColor: "#BFECFF",
+      backgroundColor: "#CCFFC4",
       color: "#007CB2"
     }
   },
@@ -24,6 +29,14 @@ const useStyles = makeStyles(theme => ({
   },
   linkBut: {
     textDecoration: "none"
+  },
+
+  linkText: {
+    color: "#E2FFCE",
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline"
+    }
   }
 }));
 const AddExercise = props => {
@@ -47,8 +60,8 @@ const AddExercise = props => {
   };
 
   return (
-    <div className="box">
-      <AccountBoxIcon fontSize="large" />
+    <div className={classes.container}>
+      <PostAddIcon className={classes.addIcon} fontSize="large" />
       <Typography component="h2" variant="h5">
         Add New Exercise
       </Typography>
@@ -74,7 +87,7 @@ const AddExercise = props => {
           <div>
             <Button
               className={classes.contButton}
-              variant="outlined"
+              variant="contained"
               color="primary"
               type="submit"
             >
@@ -82,7 +95,7 @@ const AddExercise = props => {
             </Button>
 
             <p>
-              Go to<Link to="/dashboard"> Dashboard</Link>
+              Go to<Link className={classes.linkText} to="/dashboard"> Dashboard</Link>
             </p>
           </div>
         </form>
@@ -94,7 +107,4 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(
-  mapStateToProps,
-  { createExercise }
-)(AddExercise);
+export default connect(mapStateToProps, { createExercise })(AddExercise);

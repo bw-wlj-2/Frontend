@@ -26,7 +26,8 @@ const useStyles = makeStyles(theme => ({
   card: {
     height: "100%",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    border: "1px solid #5B7648"
   },
   cardMedia: {
     paddingTop: "56.25%" // 16:9
@@ -42,12 +43,17 @@ const useStyles = makeStyles(theme => ({
     textDecoration: "none",
   },
   cardBut: {
+    color: '#79FF60',
     "&:hover": {
       color: "#E2FFCE"
     }
   },
   cardActs: {
     margin: "auto"
+  },
+  titleText:{
+    color: "#E2FFCE",
+    backgroundColor: "#5B7648",
   }
 }));
 
@@ -58,10 +64,11 @@ const ExCard = ({ ex }) => {
     <Grid item key={ex.id} xs={12} sm={6} md={4}>
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography className={classes.titleText} gutterBottom variant="h5" component="h2">
             {ex.name}
           </Typography>
           <Typography>Region: {ex.region}</Typography>
+          
         </CardContent>
         <CardActions className={classes.cardActs}>
           <Link className={classes.linkBut} to={`/exercises/${ex.id}`}>

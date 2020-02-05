@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    color: "#898E88",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -26,17 +27,20 @@ const useStyles = makeStyles(theme => ({
     width: "50%", // Fix IE 11 issue.
     marginTop: theme.spacing(3)
   },
-  contButton: {
+  regButton: {
     marginTop: 25,
-
     "&:hover": {
-      backgroundColor: "#BFECFF",
+      backgroundColor: "#CCFFC4",
       color: "#007CB2"
     }
   },
   linkBut: {
-    textDecoration: "none"
-  },
+    textDecoration: "none",
+    color: "#E2FFCE",
+    "&:hover":{
+        textDecoration:"underline"
+      }
+    },
   warning: {
     color: "#c62828",
     fontSize: "0.8rem",
@@ -138,7 +142,7 @@ const Register = props => {
           <div>
             <Link className={classes.linkBut} to="/Dashboard">
               <Button
-                className={classes.contButton}
+                className={classes.regButton}
                 variant="contained"
                 color="primary"
                 type="submit"
@@ -149,7 +153,7 @@ const Register = props => {
               </Button>
             </Link>
             <p>
-              Already have an account? <Link to="/">Log in</Link>
+              Already have an account? <Link className={classes.linkBut} to="/">Log in</Link>
             </p>
           </div>
 

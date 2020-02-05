@@ -5,16 +5,21 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import Typography from "@material-ui/core/Typography";
-import AxiosWithAuth from '../utils/AxiosWithAuth'
+import AxiosWithAuth from '../utils/AxiosWithAuth';
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles(theme => ({
+  container:{
+    margin: 100,
+    color: "#898E88"
+  },
+  editIcon:{
+    color: "#99FF8A"
+  },
   contButton: {
-    margin: 30,
-    backgroundColor: "#007CB2",
-    color: "#BFECFF",
-
+    margin: theme.spacing(3, 0, 2),
     "&:hover": {
-      backgroundColor: "#BFECFF",
+      backgroundColor: "#CCFFC4",
       color: "#007CB2"
     }
   },
@@ -23,7 +28,14 @@ const useStyles = makeStyles(theme => ({
   },
   linkBut: {
     textDecoration: "none"
-  }
+  },
+  linkText: {
+    color: "#E2FFCE",
+    textDecoration:"none",
+    "&:hover":{
+      textDecoration:"underline"
+    }
+  },
 }));
 
 const initialValue = {
@@ -65,8 +77,8 @@ const EditExercise = () => {
   }
 
   return (
-    <div className="box">
-      <AccountBoxIcon fontSize="large" />
+    <div className={classes.container}>
+      <EditIcon className={classes.editIcon} fontSize="large" />
       <Typography component="h2" variant="h5">
         Update Exercise
       </Typography>
@@ -100,18 +112,18 @@ const EditExercise = () => {
             value={exer.date}
           /> */}
         <div>
-          <Link to={`/exercises/${id}`}>
+          <Link className={classes.linkBut} to={`/exercises/${id}`}>
             <Button
               onClick={handleSubmit}
               className={classes.contButton}
-              variant="outlined"
+              variant="contained"
               color="primary"
             >
               Update
             </Button>
           </Link>
           <p>
-            Go to<Link to="/dashboard"> Dashboard</Link>
+            Go to <Link className={classes.linkText} to="/dashboard"> Dashboard</Link>
           </p>
         </div>
       </div>
