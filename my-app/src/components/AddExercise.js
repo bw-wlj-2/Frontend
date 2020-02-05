@@ -32,8 +32,13 @@ const AddExercise = props => {
 
   const [newExercise, setNewExercise] = useState({
     name: "",
-    region: ""
+    region: "",
+    current_pounds: null,
+    reps: null,
+    date_completed: ""
   });
+
+  console.log(newExercise);
 
   const handleChanges = event => {
     setNewExercise({ ...newExercise, [event.target.name]: event.target.value });
@@ -67,10 +72,27 @@ const AddExercise = props => {
             value={newExercise.region}
             onChange={handleChanges}
           />
+          <TextField
+            label="Current Pounds"
+            name="current_pounds"
+            value={newExercise.current_pounds}
+            onChange={handleChanges}
+          />
           <br />
-          <TextField label="lbs Lifted" />
+          <TextField
+            label="Reps"
+            name="reps"
+            value={newExercise.reps}
+            onChange={handleChanges}
+          />
           <br />
-          <TextField label="Date Completed" />
+          <TextField
+            label="Date Complete"
+            name="date_completed"
+            value={newExercise.date_completed}
+            onChange={handleChanges}
+          />
+
           <div>
             <Button
               className={classes.contButton}

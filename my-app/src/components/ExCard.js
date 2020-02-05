@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -45,6 +45,7 @@ const useStyles = makeStyles(theme => ({
 
 const ExCard = ({ ex }) => {
   const classes = useStyles();
+  console.log(ex);
 
   return (
     <Grid item key={ex.id} xs={12} sm={6} md={4}>
@@ -54,6 +55,9 @@ const ExCard = ({ ex }) => {
             {ex.name}
           </Typography>
           <Typography>Region: {ex.region}</Typography>
+          <Typography> date: {ex.date_completed}</Typography>
+          <Typography>Reps: {ex.reps}</Typography>
+          <Typography> Current lbs: {ex.current_pounds}</Typography>
         </CardContent>
         <CardActions>
           <Link to={`/exercises/${ex.id}`}>
@@ -69,7 +73,7 @@ const ExCard = ({ ex }) => {
         </CardActions>
       </Card>
     </Grid>
-  )
-}
+  );
+};
 
-export default ExCard
+export default ExCard;
