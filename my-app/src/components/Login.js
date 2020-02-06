@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import "./styles.css";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import fitnessImage from "../images/fitness_journal.svg";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    color: "#898E88",
+    color: "#898E88"
   },
   logButton: {
     margin: theme.spacing(3, 0, 2),
@@ -54,11 +55,11 @@ const useStyles = makeStyles(theme => ({
   },
   linkText: {
     color: "#E2FFCE",
-    textDecoration:"none",
-    "&:hover":{
-      textDecoration:"underline"
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline"
     }
-  },
+  }
 }));
 
 // const useStyles = makeStyles(theme => ({
@@ -125,16 +126,19 @@ const Login = props => {
       .post("/api/user/login", credentials)
       .then(res => {
         localStorage.setItem("token", res.data.token);
+
+//         localStorage.setItem("userName", res.data.username);
+
         localStorage.setItem("message", res.data.message);
+
         console.log(res.data);
 
         history.push("/dashboard");
       })
       .catch(err => console.log(err));
   };
-
+  console.log(credentials);
   return (
-
     <div>
       {/* <AccountBoxIcon fontSize="large" />
           <Typography component="h2" variant="h5">
@@ -209,12 +213,14 @@ const Login = props => {
 
             {/* </Link> */}
             <p>
-              Don't have an account? <Link className={classes.linkText} to="/register">Sign up</Link>
+              Don't have an account?{" "}
+              <Link className={classes.linkText} to="/register">
+                Sign up
+              </Link>
             </p>
           </div>
         </form>
       </div>
-
 
       {/* </div> <div className="box">
        <AccountBoxIcon fontSize="large" />

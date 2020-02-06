@@ -88,7 +88,13 @@ const Dashboard = props => {
   const classes = useStyles();
 
   const [exercises, setExercises] = useState([]);
+
+//   const [prof, setProf] = useState([]);
+//   const object = localStorage.getItem("token");
+//   console.log(object);
+
   const message = localStorage.getItem(`message`)
+
 
   // console.log('dashboardUSERID', history);
 
@@ -123,13 +129,30 @@ const Dashboard = props => {
     AxiosWithAuth()
       .get("/api/exercises")
       .then(res => {
-        console.log("exercise list", res);
+        console.log("unique exercise list", res);
         setExercises(res.data);
       })
       .catch(err => {
         console.log("exercise list err", err);
       });
   }, []);
+
+  // useEffect(() => {
+  //   AxiosWithAuth()
+  //     .get("/api/user")
+  //     .then(res => {
+  //       console.log("unique profile", res);
+  //       setProf(res.data);
+  //     })
+  //     .catch(err => {
+  //       console.log("prof err", err);
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    props.fetchUser(object);
+  }, []);
+  console.log("user props", props);
 
   const editProfile = event => {
     event.preventDefault();
@@ -151,7 +174,11 @@ const Dashboard = props => {
               color="textPrimary"
               gutterBottom
             >
+
+          
+
               {message}
+
             </Typography>
             <Typography
               variant="h5"
@@ -216,6 +243,7 @@ const mapStateToProps = state => {
 //   Dashboard
 // );
 
-export default connect(mapStateToProps, { fetchUser, fetchExercises })(
-  Dashboard
-);
+export default connect(
+  mapStateToProps,
+  { fetchUser, fetchExercises }
+)(Dashboard);
