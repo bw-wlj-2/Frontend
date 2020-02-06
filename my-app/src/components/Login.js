@@ -126,14 +126,14 @@ const Login = props => {
       .post("/api/user/login", credentials)
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("userID", res.data.id);
+        localStorage.setItem("userName", res.data.username);
         console.log(res.data);
 
         history.push("/dashboard");
       })
       .catch(err => console.log(err));
   };
-
+  console.log(credentials);
   return (
     <div>
       {/* <AccountBoxIcon fontSize="large" />

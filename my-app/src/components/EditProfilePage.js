@@ -7,11 +7,11 @@ import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
-  container:{
+  container: {
     margin: 100,
     color: "#898E88"
   },
-  editProIcon:{
+  editProIcon: {
     color: "#99FF8A"
   },
   contButton: {
@@ -29,11 +29,11 @@ const useStyles = makeStyles(theme => ({
   },
   linkText: {
     color: "#E2FFCE",
-    textDecoration:"none",
-    "&:hover":{
-      textDecoration:"underline"
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline"
     }
-  },
+  }
 }));
 const EditProfilePage = () => {
   const classes = useStyles();
@@ -66,7 +66,10 @@ const EditProfilePage = () => {
             </Button>
           </Link>
           <p>
-            Go Back <Link className={classes.linkText} to="/dashboard">Home</Link>
+            Go Back{" "}
+            <Link className={classes.linkText} to="/dashboard">
+              Home
+            </Link>
           </p>
         </div>
       </div>
