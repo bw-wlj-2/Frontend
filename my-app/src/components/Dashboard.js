@@ -45,22 +45,21 @@ const useStyles = makeStyles(theme => ({
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(4),
-    position: "absolute",
+    padding: theme.spacing(0.5),
+    position: "fixed",
     bottom: 0,
     width: "100%"
   },
   linkBut: {
     textDecoration: "none"
   },
-  editBut:{
-    color:"white",
+  editBut: {
     "&:hover": {
-      backgroundColor: "#CCFFC4",
+      backgroundColor: "#50C895",
       color: "#007CB2"
     }
   },
-  addBut:{
+  addBut: {
     "&:hover": {
       backgroundColor: "#CCFFC4",
       color: "#007CB2"
@@ -165,12 +164,24 @@ const Dashboard = props => {
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Link className={classes.linkBut} to="/addexercise">
-                    <Button className={classes.addBut} variant="contained" color="primary">Add Exercise</Button>
+                    <Button
+                      className={classes.addBut}
+                      variant="contained"
+                      color="primary"
+                    >
+                      Add Exercise
+                    </Button>
                   </Link>
                 </Grid>
                 <Grid item>
                   <Link className={classes.linkBut} to="/editprofile">
-                    <Button className={classes.editBut} variant="outlined" color="secondary">Edit Profile</Button>
+                    <Button
+                      className={classes.editBut}
+                      variant="contained"
+                      color="secondary"
+                    >
+                      Edit Profile
+                    </Button>
                   </Link>
                 </Grid>
               </Grid>
