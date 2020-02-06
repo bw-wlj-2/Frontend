@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link, useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import Typography from "@material-ui/core/Typography";
 import { createExercise } from "../actions/UserActions/CreateExercise.js";
 import { connect } from "react-redux";
@@ -118,9 +117,8 @@ const AddExercise = props => {
             </Button>
 
             <p>
-              Go to
+              Go to {""}
               <Link className={classes.linkText} to="/dashboard">
-                {" "}
                 Dashboard
               </Link>
             </p>

@@ -61,30 +61,6 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }));
-
-// const useStyles = makeStyles(theme => ({
-//   paper: {
-//     marginTop: theme.spacing(8),
-//     display: "flex",
-//     flexDirection: "column",
-//     alignItems: "center"
-//   },
-//   avatar: {
-//     margin: theme.spacing(1),
-//     backgroundColor: theme.palette.secondary.main
-//   },
-//   form: {
-//     width: "100%", // Fix IE 11 issue.
-//     marginTop: theme.spacing(1)
-//   },
-//   submit: {
-//     margin: theme.spacing(3, 0, 2)
-//   },
-//   linkBut: {
-//     textDecoration: "none"
-//   }
-// }));
-
 const Login = props => {
   const classes = useStyles();
   const history = useHistory();
@@ -140,10 +116,6 @@ const Login = props => {
   console.log(credentials);
   return (
     <div>
-      {/* <AccountBoxIcon fontSize="large" />
-          <Typography component="h2" variant="h5">
-            Log In
-          </Typography> */}
       <div className={classes.container}>
         <div>
           <img height="200" width="200" src={fitnessImage} />
@@ -182,28 +154,8 @@ const Login = props => {
               name="password"
             />
           </div>
-          {/*
-    //       <form onSubmit={handleSubmit}>
-    //         <div className={classes.formDiv}>
-    //           <TextField
-    //             type='text'
-    //             label="Username"
-    //           // onChange={handleChange}
-    //           // value={users.username}
-    //           />
-    //           <br />
-    //           <TextField
-    //             label="Password"
-    //             type="password"
-    //           // onChange={handleChange}
-    //           // value={users.password}
-    //           // error
-    //           // helperText="Required"
-    //           />
-    */}
 
           <div>
-            {/* <Link className={classes.linkBut} to="/dashboard"> */}
             <Button
               className={classes.logButton}
               variant="contained"
@@ -213,8 +165,6 @@ const Login = props => {
             >
               Login
             </Button>
-
-            {/* </Link> */}
             <p>
               Don't have an account?{" "}
               <Link className={classes.linkText} to="/register">
@@ -224,65 +174,6 @@ const Login = props => {
           </div>
         </form>
       </div>
-
-      {/* </div> <div className="box">
-       <AccountBoxIcon fontSize="large" />
-       <Typography component="h2" variant="h5">
-         Log In
-       </Typography>
-       <form className={classes.form} onSubmit={loginForm}>
-         <div className={classes.formDiv}>
-            <TextField
-            label="Username"
-            value={credentials.username}
-            onChange={handleChanges}
-            name="username"
-          />
-          <br />
-          <TextField
-            label="Password"
-            type="password"
-            error
-            helperText="Required"
-            value={credentials.password}
-            onChange={handleChanges}
-            name="password"
-          />
-        </div>
-       <form onSubmit={handleSubmit}>
-         <div className={classes.formDiv}>
-           <TextField
-             type='text'
-             label="Username"
-            onChange={handleChange}
-            value={users.username}
-           />
-           <br />
-           <TextField
-             label="Password"
-             type="password"
-            onChange={handleChange}
-            value={users.password}
-            error
-            helperText="Required"
-           />
-
-        <div>
-          <Button
-            className={classes.contButton}
-            variant="outlined"
-            color="primary"
-            type="submit"
-          >
-            Login
-          </Button>
-
-          {/* </Link> */}
-      {/* <p>
-            Don't have an account? <Link to="/register">Sign up</Link>
-          </p>
-        </div> */}
-      {/* </form> */}
     </div>
   );
 };

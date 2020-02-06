@@ -12,6 +12,7 @@ import AddExercise from "./components/AddExercise";
 import EditExercise from "./components/EditExercise";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core/styles";
+import NavBarNoAuth from "./components/NavBarNoAuth";
 
 function App() {
   //FOR DARK MODE
@@ -24,7 +25,7 @@ function App() {
             main: "#99FF8A"
           },
           secondary: {
-            main: "#388C68"
+            main: "#6E8B3D"
           }
         },
         typography: {
@@ -38,33 +39,39 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <div className="App">
-          <NavBar />
           <Switch>
             <Route exact path="/">
+              <NavBarNoAuth />
               <Login />
             </Route>
 
             <Route exact path="/register">
+              <NavBarNoAuth />
               <Register />
             </Route>
 
             <PrivateRoute exact path="/dashboard">
+              <NavBar />
               <Dashboard />
             </PrivateRoute>
 
             <Route exact path="/editprofile">
+              <NavBar />
               <EditProfilePage />
             </Route>
 
             <Route exact path="/exercises/:id">
+              <NavBar />
               <UniqueExercise />
             </Route>
 
             <Route exact path="/addexercise">
+              <NavBar />
               <AddExercise />
             </Route>
 
             <Route exact path="/editExercises/:id">
+              <NavBar />
               <EditExercise />
             </Route>
           </Switch>

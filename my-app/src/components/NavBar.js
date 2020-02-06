@@ -90,10 +90,13 @@ const NavBar = () => {
                 GitHub{" "}
               </MenuItem>
             </a>
-            <a className={classes.linkBut} to="/">
+            <a
+              className={classes.linkBut}
+              href="https://simplyfitpromo.netlify.com/about.html"
+            >
               <MenuItem className={classes.menuItems} onClick={closeMenu}>
                 {" "}
-                About Us{" "}
+                Our Story{" "}
               </MenuItem>
             </a>
             <Link className={classes.linkBut} to="/">

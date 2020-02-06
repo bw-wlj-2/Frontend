@@ -3,18 +3,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link, useParams, useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import Typography from "@material-ui/core/Typography";
-import AxiosWithAuth from '../utils/AxiosWithAuth';
-import EditIcon from '@material-ui/icons/Edit';
-
+import AxiosWithAuth from "../utils/AxiosWithAuth";
+import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles(theme => ({
-  container:{
+  container: {
     margin: 100,
     color: "#898E88"
   },
-  editIcon:{
+  editIcon: {
     color: "#99FF8A"
   },
   contButton: {
@@ -32,11 +30,11 @@ const useStyles = makeStyles(theme => ({
   },
   linkText: {
     color: "#E2FFCE",
-    textDecoration:"none",
-    "&:hover":{
-      textDecoration:"underline"
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline"
     }
-  },
+  }
 }));
 
 const initialValue = {
@@ -75,7 +73,7 @@ const EditExercise = () => {
       .then(() => {
         setTimeout(function() {
           history.push(`/exercises/${id}`);
-        }, 6000);
+        }, 1000);
         // history.push(`/exercises/${id}`)
       })
       .catch(err => console.log(err));
@@ -92,14 +90,14 @@ const EditExercise = () => {
           label="Exercise Name"
           name="name"
           onChange={handleChange}
-          value={exer.name || ''}
+          value={exer.name || ""}
         />
         <br />
         <TextField
           label="Region Targeted"
           name="region"
           onChange={handleChange}
-          value={exer.region || ''}
+          value={exer.region || ""}
         />
         <br />
         <TextField
@@ -107,21 +105,21 @@ const EditExercise = () => {
           label="Weight (lbs)"
           name="current_pounds"
           onChange={handleChange}
-          value={exer.current_pounds || ''}
+          value={exer.current_pounds || ""}
         />
         <br />
         <TextField
           label="Reps"
           name="reps"
           onChange={handleChange}
-          value={exer.reps || ''}
+          value={exer.reps || ""}
         />
         <br />
         <TextField
           label="Date Completed"
           name="date_completed"
           onChange={handleChange}
-          value={exer.date_completed || ''}
+          value={exer.date_completed || ""}
         />
         <div>
           <Link className={classes.linkBut} to={`/exercises/${id}`}>
@@ -135,7 +133,11 @@ const EditExercise = () => {
             </Button>
           </Link>
           <p>
-            Go to <Link className={classes.linkText} to="/dashboard"> Dashboard</Link>
+            Go to{" "}
+            <Link className={classes.linkText} to="/dashboard">
+              {" "}
+              Dashboard
+            </Link>
           </p>
         </div>
       </div>

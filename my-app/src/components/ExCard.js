@@ -54,7 +54,10 @@ const useStyles = makeStyles(theme => ({
   titleText:{
     color: "#E2FFCE",
     backgroundColor: "#5B7648",
-  }
+    marginRight: 50,
+    marginLeft: 50,
+    border: "1px dotted #E2FFCE"
+  },
 }));
 
 const ExCard = ({ ex }) => {
@@ -69,19 +72,14 @@ const ExCard = ({ ex }) => {
             {ex.name}
           </Typography>
           <Typography>Region: {ex.region}</Typography>
-          <Typography> date: {ex.date_completed}</Typography>
           <Typography>Reps: {ex.reps}</Typography>
           <Typography> Current lbs: {ex.current_pounds}</Typography>
+          <Typography> Date: {ex.date_completed}</Typography>
         </CardContent>
         <CardActions className={classes.cardActs}>
           <Link className={classes.linkBut} to={`/exercises/${ex.id}`}>
             <Button className={classes.cardBut} size="small">View details</Button>
           </Link>
-          {/* <Link to="/editexercises" className={classes.linkBut}>
-            <Button size="small" color="primary">
-              Edit
-            </Button>
-          </Link> */}
         </CardActions>
       </Card>
     </Grid>
