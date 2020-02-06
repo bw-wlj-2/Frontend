@@ -126,7 +126,11 @@ const Login = props => {
       .post("/api/user/login", credentials)
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("userName", res.data.username);
+
+//         localStorage.setItem("userName", res.data.username);
+
+        localStorage.setItem("message", res.data.message);
+
         console.log(res.data);
 
         history.push("/dashboard");

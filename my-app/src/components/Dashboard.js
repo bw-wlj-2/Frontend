@@ -88,9 +88,14 @@ const Dashboard = props => {
   const classes = useStyles();
 
   const [exercises, setExercises] = useState([]);
-  const [prof, setProf] = useState([]);
-  const object = localStorage.getItem("token");
-  console.log(object);
+
+//   const [prof, setProf] = useState([]);
+//   const object = localStorage.getItem("token");
+//   console.log(object);
+
+  const message = localStorage.getItem(`message`)
+
+
   // console.log('dashboardUSERID', history);
 
   //   console.log("checking for exercise", exercises);
@@ -169,7 +174,11 @@ const Dashboard = props => {
               color="textPrimary"
               gutterBottom
             >
-              Welcome to your worst nightmare, {prof.username}
+
+          
+
+              {message}
+
             </Typography>
             <Typography
               variant="h5"
