@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import Typography from "@material-ui/core/Typography";
+import AxiosWithAuth from '../utils/AxiosWithAuth'
+import Axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   contButton: {
@@ -26,6 +28,19 @@ const useStyles = makeStyles(theme => ({
 }));
 const EditProfilePage = () => {
   const classes = useStyles();
+  const { id } = useParams();
+  console.log(id)
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    AxiosWithAuth().get(`/api/user/login`)
+      .then(res => 
+        console.log(res)
+        // setUser(res.data)
+      )
+      .catch(err => console.log(err))
+  })
+
 
   return (
     <div className="box">

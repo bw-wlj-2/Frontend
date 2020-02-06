@@ -72,35 +72,7 @@ const Dashboard = props => {
   const classes = useStyles();
 
   const [exercises, setExercises] = useState([]);
-
-
-  //   console.log("checking for exercise", exercises);
-
-  //   useEffect(() => {
-  //     props.fetchUser(userID);
-  //   }, []);
-  //   console.log("this is props", props);
-
-  //   useEffect(() => {
-  //     props.fetchExercises(userID);
-  //     setExercises(props.userExercises);
-  //   }, [exercises]);
-  //   console.log("this is props", props);
-
-  //   const [exercises, setExercises] = useState([]);
-
-  //   console.log("checking for exercise", exercises);
-
-  // useEffect(() => {
-  //   props.fetchUser(userID);
-  // }, []);
-  // console.log("this is props", props);
-  //
-  // useEffect(() => {
-  //   props.fetchExercises(userID);
-  //   setExercises(props.userExercises);
-  // }, [exercises]);
-  // console.log("this is props", props);
+  
   useEffect(() => {
     AxiosWithAuth()
       .get("/api/exercises")
