@@ -158,14 +158,12 @@ const Dashboard = props => {
 
         setExercises(res.data);
         //for search bar to filter exercises
-        const results = res.data.filter(ex =>
-          ex.name.toLowerCase().includes(query.toLowerCase())
-        );
-        const result = res.data.filter(ex =>
-          ex.region.toLowerCase().includes(query.toLowerCase())
+        const results = res.data.filter(
+          ex =>
+            ex.name.toLowerCase().includes(query.toLowerCase()) ||
+            ex.region.toLowerCase().includes(query.toLowerCase())
         );
         setExercises(results);
-        setExercises(result);
       })
       .catch(err => {
         console.log("exercise list err", err);
@@ -297,7 +295,6 @@ const mapStateToProps = state => {
 //   Dashboard
 // );
 
-export default connect(
-  mapStateToProps,
-  { fetchUser, fetchExercises }
-)(Dashboard);
+export default connect(mapStateToProps, { fetchUser, fetchExercises })(
+  Dashboard
+);
