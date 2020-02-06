@@ -127,7 +127,7 @@ const Login = props => {
       .then(res => {
         localStorage.setItem("token", res.data.token);
 
-//         localStorage.setItem("userName", res.data.username);
+        //         localStorage.setItem("userName", res.data.username);
 
         localStorage.setItem("message", res.data.message);
 
@@ -145,6 +145,9 @@ const Login = props => {
             Log In
           </Typography> */}
       <div className={classes.container}>
+        <div>
+          <img height="200" width="200" src={fitnessImage} />
+        </div>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
