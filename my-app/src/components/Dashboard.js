@@ -4,13 +4,12 @@ import { connect } from "react-redux";
 import { fetchUser } from "../actions/UserActions/FetchUser";
 import { fetchExercises } from "../actions/UserActions/FetchExercises";
 import Button from "@material-ui/core/Button";
-// import Card from "@material-ui/core/Card";
-// import CardActions from "@material-ui/core/CardActions";
-// import CardContent from "@material-ui/core/CardContent";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, fade } from "@material-ui/core/styles";
+import SearchIcon from "@material-ui/icons/Search";
+import InputBase from "@material-ui/core/InputBase";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
@@ -53,33 +52,57 @@ const useStyles = makeStyles(theme => ({
   linkBut: {
     textDecoration: "none"
   },
-  editBut: {
-    "&:hover": {
-      backgroundColor: "#50C895",
-      color: "#007CB2"
-    }
-  },
   addBut: {
     "&:hover": {
       backgroundColor: "#CCFFC4",
       color: "#007CB2"
     }
+  },
+  editBut: {
+    "&:hover": {
+      backgroundColor: "#f4ffdb",
+      color: "#007CB2"
+    }
+  },
+  searchContainer: {
+    width: "46%",
+    margin: "auto"
+  },
+  search: {
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.white, 0.25)
+    },
+    marginTop: 30,
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "auto"
+    }
+  },
+  searchIcon: {
+    width: theme.spacing(7),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  inputRoot: {
+    color: "inherit"
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 7),
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: 200
+    }
   }
 }));
-
-//COPYRIGHT FOOTER, GOES IN DASHBOARD
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {"Copyright © "}
-//       <Link color="primary" to="/">
-//         Weight-Lifting Journal
-//       </Link>{" "}
-//       {new Date().getFullYear()}
-//       {"."}
-//     </Typography>
-//   );
-// }
 
 //MAIN DASHBOARD COMPONENT
 const Dashboard = props => {
@@ -88,6 +111,8 @@ const Dashboard = props => {
   const classes = useStyles();
 
   const [exercises, setExercises] = useState([]);
+  //set state for search bar
+  const [query, setQuery] = useState("");
 
   // console.log('dashboardUSERID', history);
 
@@ -122,19 +147,27 @@ const Dashboard = props => {
     AxiosWithAuth()
       .get("/api/exercises")
       .then(res => {
-        console.log("exercise list", res);
+        console.log("exercise list", res.data);
         setExercises(res.data);
+        //for search bar to filter exercises
+        const results = res.data.filter(ex =>
+          ex.name.toLowerCase().includes(query.toLowerCase())
+        );
+        setExercises(results);
       })
       .catch(err => {
         console.log("exercise list err", err);
       });
-  }, []);
+  }, [query]);
 
   const editProfile = event => {
     event.preventDefault();
     history.push("/editprofile");
   };
 
+  const handleInputChange = event => {
+    setQuery(event.target.value);
+  };
   return (
     <div>
       <CssBaseline />
@@ -185,6 +218,23 @@ const Dashboard = props => {
                   </Link>
                 </Grid>
               </Grid>
+            </div>
+            <div className={classes.searchContainer}>
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder="Search…"
+                  onChange={handleInputChange}
+                  value={query}
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput
+                  }}
+                  inputProps={{ "aria-label": "search" }}
+                />
+              </div>
             </div>
           </Container>
         </div>
