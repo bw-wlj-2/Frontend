@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -26,7 +26,8 @@ const useStyles = makeStyles(theme => ({
   card: {
     height: "100%",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    border: "1px solid #5B7648"
   },
   cardMedia: {
     paddingTop: "56.25%" // 16:9
@@ -39,27 +40,43 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(6)
   },
   linkBut: {
-    textDecoration: "none"
+    textDecoration: "none",
+  },
+  cardBut: {
+    color: '#79FF60',
+    "&:hover": {
+      color: "#E2FFCE"
+    }
+  },
+  cardActs: {
+    margin: "auto"
+  },
+  titleText: {
+    color: "#E2FFCE",
+    backgroundColor: "#5B7648",
   }
 }));
 
 const ExCard = ({ ex }) => {
   const classes = useStyles();
+  // console.log(ex);
+  const [unique, setUnique] = useState()
 
   return (
     <Grid item key={ex.id} xs={12} sm={6} md={4}>
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography className={classes.titleText} gutterBottom variant="h5" component="h2">
             {ex.name}
           </Typography>
           <Typography>Region: {ex.region}</Typography>
+          <Typography> date: {ex.date_completed}</Typography>
+          <Typography>Reps: {ex.reps}</Typography>
+          <Typography> Current lbs: {ex.current_pounds}</Typography>
         </CardContent>
-        <CardActions>
-          <Link to={`/exercises/${ex.id}`}>
-            <Button size="small" color="primary">
-              View
-            </Button>
+        <CardActions className={classes.cardActs}>
+          <Link className={classes.linkBut} to={`/exercises/${ex.id}`}>
+            <Button className={classes.cardBut} size="small">View details</Button>
           </Link>
           {/* <Link to="/editexercises" className={classes.linkBut}>
             <Button size="small" color="primary">
@@ -69,7 +86,7 @@ const ExCard = ({ ex }) => {
         </CardActions>
       </Card>
     </Grid>
-  )
-}
+  );
+};
 
-export default ExCard
+export default ExCard;

@@ -5,16 +5,22 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import Typography from "@material-ui/core/Typography";
-import AxiosWithAuth from '../utils/AxiosWithAuth'
+import AxiosWithAuth from '../utils/AxiosWithAuth';
+import EditIcon from '@material-ui/icons/Edit';
+
 
 const useStyles = makeStyles(theme => ({
+  container: {
+    margin: 100,
+    color: "#898E88"
+  },
+  editIcon: {
+    color: "#99FF8A"
+  },
   contButton: {
-    margin: 30,
-    backgroundColor: "#007CB2",
-    color: "#BFECFF",
-
+    margin: theme.spacing(3, 0, 2),
     "&:hover": {
-      backgroundColor: "#BFECFF",
+      backgroundColor: "#CCFFC4",
       color: "#007CB2"
     }
   },
@@ -23,98 +29,127 @@ const useStyles = makeStyles(theme => ({
   },
   linkBut: {
     textDecoration: "none"
-  }
+  },
+  linkText: {
+    color: "#E2FFCE",
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline"
+    }
+  },
 }));
 
-const initialValue = {
-  name: '',
-  region: '',
-}
 
 const EditExercise = () => {
   const classes = useStyles();
   const history = useHistory();
   const { id } = useParams();
-  console.log(id)
-  const [exer, setExer] = useState(initialValue)
+  console.log(id);
+  const [exer, setExer] = useState(
+    {
+      id: null,
+      user_id: null,
+      name: '',
+      region: '',
+      current_pounds: null,
+      reps: null,
+      date_completed: ''
+    }
+  );
+  const [editing, setEditing] = useState(false);
 
   useEffect(() => {
-    AxiosWithAuth().get(`/api/exercises/${id}`)
+    AxiosWithAuth()
+      .get(`/api/exercises/${id}`)
       .then(res =>
         // console.log(res),
         setExer(res.data)
       )
-      .catch(err => console.log(err))
-  }, [id])
+      .catch(err => console.log(err));
+    setEditing(false);
+  }, [id]);
 
   const handleChange = e => {
     setExer({
       ...exer,
       [e.target.name]: e.target.value
-    })
-  }
+    });
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    AxiosWithAuth().put(`/api/exercises/${id}`, exer)
+    AxiosWithAuth()
+      .put(`/api/exercises/${id}`, exer)
       .then(() => {
-        setTimeout(function () { history.push(`/exercises/${id}`) }, 6000)
-        // history.push(`/exercises/${id}`)
+        history.push(`/exercises/${id}`)
       })
-      .catch(err => console.log(err))
-  }
+      .catch(err => console.log(err));
+    setEditing(false)
+  };
+  console.log(exer)
 
   return (
-    <div className="box">
-      <AccountBoxIcon fontSize="large" />
-      <Typography component="h2" variant="h5">
-        Update Exercise
-      </Typography>
-      <div className={classes.formDiv}>
-        <TextField
-          label="Exercise Name"
-          name='name'
-          onChange={handleChange}
-          value={exer.name}
-        />
-        <br />
-        <TextField
-          label="Region Targeted"
-          name='region'
-          onChange={handleChange}
-          value={exer.region}
-        />
-        <br />
-        {/* <TextField
-            type='number'
-            label="Weight (lbs)"
-            name='weight'
-            onChange={handleChange}
-            value={exer.weight}
-          />
-          <br />
-          <TextField
-            label="Date Completed"
-            name='date'
-            onChange={handleChange}
-            value={exer.date}
-          /> */}
+    <div className={classes.container}>
+
+      {!editing && (
         <div>
-          <Link to={`/exercises/${id}`}>
-            <Button
-              onClick={handleSubmit}
-              className={classes.contButton}
-              variant="outlined"
-              color="primary"
-            >
-              Update
+          <EditIcon className={classes.editIcon} fontSize="large" />
+          <Typography component="h2" variant="h5">
+            Update Exercise
+          </Typography>
+          <div className={classes.formDiv}>
+            <TextField
+              label="Exercise Name"
+              name="name"
+              onChange={handleChange}
+              value={exer.name}
+            />
+            <br />
+            <TextField
+              label="Region Targeted"
+              name="region"
+              onChange={handleChange}
+              value={exer.region}
+            />
+            <br />
+            <TextField
+              type="number"
+              label="Weight (lbs)"
+              name="current_pounds"
+              onChange={handleChange}
+              value={exer.current_pounds}
+            />
+            <br />
+            <TextField
+              label="Reps"
+              name="reps"
+              onChange={handleChange}
+              value={exer.reps}
+            />
+            <br /> 
+            <TextField
+              label="Date Completed"
+              name="date_completed"
+              onChange={handleChange}
+              value={exer.date_completed}
+            />
+            <div>
+              {/* <Link className={classes.linkBut} to={`/exercises/${id}`}> */}
+              <Button
+                onClick={handleSubmit}
+                className={classes.contButton}
+                variant="contained"
+                color="primary"
+              >
+                Update
             </Button>
-          </Link>
-          <p>
-            Go to<Link to="/dashboard"> Dashboard</Link>
-          </p>
-        </div>
-      </div>
+              {/* </Link> */}
+              <p>
+                Go to <Link className={classes.linkText} to="/dashboard"> Dashboard</Link>
+              </p>
+            </div>
+          </div>
+        </div>)}
     </div>
   );
 };

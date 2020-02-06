@@ -9,13 +9,17 @@ import AxiosWithAuth from '../utils/AxiosWithAuth'
 import Axios from "axios";
 
 const useStyles = makeStyles(theme => ({
+  container:{
+    margin: 100,
+    color: "#898E88"
+  },
+  editProIcon:{
+    color: "#99FF8A"
+  },
   contButton: {
-    margin: 30,
-    backgroundColor: "#007CB2",
-    color: "#BFECFF",
-
+    margin: theme.spacing(3, 0, 2),
     "&:hover": {
-      backgroundColor: "#BFECFF",
+      backgroundColor: "#CCFFC4",
       color: "#007CB2"
     }
   },
@@ -24,7 +28,14 @@ const useStyles = makeStyles(theme => ({
   },
   linkBut: {
     textDecoration: "none"
-  }
+  },
+  linkText: {
+    color: "#E2FFCE",
+    textDecoration:"none",
+    "&:hover":{
+      textDecoration:"underline"
+    }
+  },
 }));
 const EditProfilePage = () => {
   const classes = useStyles();
@@ -43,8 +54,8 @@ const EditProfilePage = () => {
 
 
   return (
-    <div className="box">
-      <AccountBoxIcon fontSize="large" />
+    <div className={classes.container}>
+      <AccountBoxIcon className={classes.editProIcon} fontSize="large" />
       <Typography component="h2" variant="h5">
         Edit Profile
       </Typography>
@@ -63,14 +74,14 @@ const EditProfilePage = () => {
           <Link className={classes.linkBut} to="/Dashboard">
             <Button
               className={classes.contButton}
-              variant="outlined"
-              color="primary"
+              variant="contained"
+              color="secondary"
             >
               Submit
             </Button>
           </Link>
           <p>
-            Go Back <Link to="/">Home</Link>
+            Go Back <Link className={classes.linkText} to="/">Home</Link>
           </p>
         </div>
       </div>
