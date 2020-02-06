@@ -88,6 +88,7 @@ const Dashboard = props => {
   const classes = useStyles();
 
   const [exercises, setExercises] = useState([]);
+  const message = localStorage.getItem(`message`)
 
   // console.log('dashboardUSERID', history);
 
@@ -150,7 +151,7 @@ const Dashboard = props => {
               color="textPrimary"
               gutterBottom
             >
-              Welcome to your worst nightmare...
+              {message}
             </Typography>
             <Typography
               variant="h5"

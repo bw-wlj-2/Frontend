@@ -125,7 +125,7 @@ const Login = props => {
       .post("/api/user/login", credentials)
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("userID", res.data.id);
+        localStorage.setItem("message", res.data.message);
         console.log(res.data);
 
         history.push("/dashboard");
