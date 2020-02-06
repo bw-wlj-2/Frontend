@@ -85,6 +85,7 @@ const AddExercise = props => {
             value={newExercise.region}
             onChange={handleChanges}
           />
+          <br />
           <TextField
             label="Current Pounds"
             name="current_pounds"
@@ -117,7 +118,11 @@ const AddExercise = props => {
             </Button>
 
             <p>
-              Go to<Link className={classes.linkText} to="/dashboard"> Dashboard</Link>
+              Go to
+              <Link className={classes.linkText} to="/dashboard">
+                {" "}
+                Dashboard
+              </Link>
             </p>
           </div>
         </form>

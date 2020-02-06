@@ -24,7 +24,7 @@ function App() {
             main: "#99FF8A"
           },
           secondary: {
-            main: "#24B30E"
+            main: "#388C68"
           }
         },
         typography: {

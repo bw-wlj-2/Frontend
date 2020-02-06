@@ -60,13 +60,13 @@ const EditProfilePage = () => {
             <Button
               className={classes.contButton}
               variant="contained"
-              color="secondary"
+              color="primary"
             >
               Submit
             </Button>
           </Link>
           <p>
-            Go Back <Link className={classes.linkText} to="/">Home</Link>
+            Go Back <Link className={classes.linkText} to="/dashboard">Home</Link>
           </p>
         </div>
       </div>

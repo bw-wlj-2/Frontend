@@ -92,14 +92,14 @@ const EditExercise = () => {
           label="Exercise Name"
           name="name"
           onChange={handleChange}
-          value={exer.name}
+          value={exer.name || ''}
         />
         <br />
         <TextField
           label="Region Targeted"
           name="region"
           onChange={handleChange}
-          value={exer.region}
+          value={exer.region || ''}
         />
         <br />
         <TextField
@@ -107,21 +107,21 @@ const EditExercise = () => {
           label="Weight (lbs)"
           name="current_pounds"
           onChange={handleChange}
-          value={exer.current_pounds}
+          value={exer.current_pounds || ''}
         />
         <br />
         <TextField
           label="Reps"
           name="reps"
           onChange={handleChange}
-          value={exer.reps}
+          value={exer.reps || ''}
         />
         <br />
         <TextField
           label="Date Completed"
           name="date_completed"
           onChange={handleChange}
-          value={exer.date_completed}
+          value={exer.date_completed || ''}
         />
         <div>
           <Link className={classes.linkBut} to={`/exercises/${id}`}>
