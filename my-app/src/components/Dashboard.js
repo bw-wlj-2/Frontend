@@ -89,12 +89,11 @@ const Dashboard = props => {
 
   const [exercises, setExercises] = useState([]);
 
-//   const [prof, setProf] = useState([]);
-//   const object = localStorage.getItem("token");
-//   console.log(object);
+  //   const [prof, setProf] = useState([]);
+  //   const object = localStorage.getItem("token");
+  //   console.log(object);
 
-  const message = localStorage.getItem(`message`)
-
+  const message = localStorage.getItem(`message`);
 
   // console.log('dashboardUSERID', history);
 
@@ -149,10 +148,10 @@ const Dashboard = props => {
   //     });
   // }, []);
 
-  useEffect(() => {
-    props.fetchUser(object);
-  }, []);
-  console.log("user props", props);
+  // useEffect(() => {
+  //   props.fetchUser(object);
+  // }, []);
+  // console.log("user props", props);
 
   const editProfile = event => {
     event.preventDefault();
@@ -174,11 +173,7 @@ const Dashboard = props => {
               color="textPrimary"
               gutterBottom
             >
-
-          
-
               {message}
-
             </Typography>
             <Typography
               variant="h5"
