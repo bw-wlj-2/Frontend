@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, createPalette } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
@@ -14,12 +14,16 @@ const useStyles = makeStyles(theme => ({
     margin: "auto"
   },
   editBut: {
-    margin: 10
+    margin: 10,
+    "&:hover": {
+      backgroundColor: "#CCFFC4",
+      color: "#007CB2"
+    }
   },
   deleteBut: {
     margin: 10,
     border: "1px solid red",
-
+    color: 'red',
     "&:hover": {
       backgroundColor: "red"
     }
@@ -104,7 +108,6 @@ export default function UniqueExercise(props) {
                 onClick={handleDelete}
                 className={classes.deleteBut}
                 variant="contained"
-                color="secondary"
               >
                 Delete
               </Button>

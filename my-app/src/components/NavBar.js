@@ -19,13 +19,17 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "space-around"
   },
   menuButton: {
-    marginRight: 0,
-    position: "absolute"
+    padding: 0,
+    position: "absolute",
+    "&:hover": {
+      backgroundColor: "none"
+    }
   },
   title: {
     flexGrow: 1,
     textAlign: "center",
     margin: "auto",
+    marginRight: "1.5%",
     fontFamily: "Concert One, cursive"
   },
   menuIcon: {
@@ -34,18 +38,14 @@ const useStyles = makeStyles(theme => ({
   },
   icon: {
     position: "absolute",
-    right: "2rem",
+    right: "3rem",
     color: "#E2FFCE"
   },
   linkBut: {
     textDecoration: "none"
   },
-  // iconButton: {
-  //   padding: 0
-  // },
   menuItems: {
-    color: "#E2FFCE",
-    // backgroundColor: "#5B7648"
+    color: "#E2FFCE"
   }
 }));
 
@@ -65,24 +65,42 @@ const NavBar = () => {
 
   return (
     <div>
-      <AppBar
-        position="static"
-        className={classes.appBar}
-        title="Enter User Details"
-      >
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Button className={classes.menuButton} onClick={recordButtonPosition}>
             <MenuIcon className={classes.menuIcon} fontSize="medium" />
           </Button>
           <Menu anchorEl={anchorEl} open={menuOpen} onClose={closeMenu}>
             <Link className={classes.linkBut} to="/dashboard">
-              <MenuItem className={classes.menuItems} onClick={closeMenu}> Dashboard </MenuItem>
+              <MenuItem className={classes.menuItems} onClick={closeMenu}>
+                {" "}
+                Dashboard{" "}
+              </MenuItem>
             </Link>
+
             <Link className={classes.linkBut} to="/editprofile">
-              <MenuItem className={classes.menuItems} onClick={closeMenu}> Edit Profile </MenuItem>
+              <MenuItem className={classes.menuItems} onClick={closeMenu}>
+                {" "}
+                Edit Profile{" "}
+              </MenuItem>
             </Link>
+            <a className={classes.linkBut} href="https://github.com/bw-wlj-2">
+              <MenuItem className={classes.menuItems} onClick={closeMenu}>
+                {" "}
+                GitHub{" "}
+              </MenuItem>
+            </a>
+            <a className={classes.linkBut} to="/">
+              <MenuItem className={classes.menuItems} onClick={closeMenu}>
+                {" "}
+                About Us{" "}
+              </MenuItem>
+            </a>
             <Link className={classes.linkBut} to="/">
-              <MenuItem className={classes.menuItems} onClick={closeMenu}> Logout </MenuItem>
+              <MenuItem className={classes.menuItems} onClick={closeMenu}>
+                {" "}
+                Logout{" "}
+              </MenuItem>
             </Link>
           </Menu>
           <Typography variant="h4" className={classes.title}>
