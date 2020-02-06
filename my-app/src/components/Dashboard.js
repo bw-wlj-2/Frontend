@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 import ExCard from "./ExCard";
 import CopyRight from "./CopyRight";
+import workoutImage from "../images/workingOut.svg";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -175,6 +176,9 @@ const Dashboard = props => {
             >
               {message}
             </Typography>
+            <div>
+              <img width="250" height="220" src={workoutImage} />
+            </div>
             <Typography
               variant="h5"
               align="center"
