@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import "./styles.css";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import fitnessImage from "../images/fitness_journal.svg";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -101,17 +102,24 @@ const Login = props => {
       .post("/api/user/login", credentials)
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("userID", res.data.id);
+
+        //         localStorage.setItem("userName", res.data.username);
+
+        localStorage.setItem("message", res.data.message);
+
         console.log(res.data);
 
         history.push("/dashboard");
       })
       .catch(err => console.log(err));
   };
-
+  console.log(credentials);
   return (
     <div>
       <div className={classes.container}>
+        <div>
+          <img height="200" width="200" src={fitnessImage} />
+        </div>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>

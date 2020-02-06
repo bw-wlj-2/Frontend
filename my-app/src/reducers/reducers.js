@@ -11,7 +11,6 @@ import {
   CREATE_EXERCISE_FAILURE
 } from "../actions/UserActions/CreateExercise";
 
-
 // import {
 //   FETCH_USER_START,
 //   FETCH_USER_SUCCESS,
@@ -180,7 +179,6 @@ export const reducers = (state = initialState, action) => {
         isLoading: false,
         error: action.payload
       };
-
 
     default:
       return state;

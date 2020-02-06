@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 import ExCard from "./ExCard";
 import CopyRight from "./CopyRight";
+import workoutImage from "../images/workingOut.svg";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -114,6 +115,12 @@ const Dashboard = props => {
   //set state for search bar
   const [query, setQuery] = useState("");
 
+  //   const [prof, setProf] = useState([]);
+  //   const object = localStorage.getItem("token");
+  //   console.log(object);
+
+  const message = localStorage.getItem(`message`);
+
   // console.log('dashboardUSERID', history);
 
   //   console.log("checking for exercise", exercises);
@@ -147,7 +154,8 @@ const Dashboard = props => {
     AxiosWithAuth()
       .get("/api/exercises")
       .then(res => {
-        console.log("exercise list", res.data);
+        console.log("unique exercise list", res);
+
         setExercises(res.data);
         //for search bar to filter exercises
         const results = res.data.filter(ex =>
@@ -159,6 +167,23 @@ const Dashboard = props => {
         console.log("exercise list err", err);
       });
   }, [query]);
+
+  // useEffect(() => {
+  //   AxiosWithAuth()
+  //     .get("/api/user")
+  //     .then(res => {
+  //       console.log("unique profile", res);
+  //       setProf(res.data);
+  //     })
+  //     .catch(err => {
+  //       console.log("prof err", err);
+  //     });
+  // }, []);
+
+  // useEffect(() => {
+  //   props.fetchUser(object);
+  // }, []);
+  // console.log("user props", props);
 
   const editProfile = event => {
     event.preventDefault();
@@ -183,8 +208,11 @@ const Dashboard = props => {
               color="textPrimary"
               gutterBottom
             >
-              Welcome to your worst nightmare...
+              {message}
             </Typography>
+            <div>
+              <img width="250" height="220" src={workoutImage} />
+            </div>
             <Typography
               variant="h5"
               align="center"
@@ -265,6 +293,7 @@ const mapStateToProps = state => {
 //   Dashboard
 // );
 
-export default connect(mapStateToProps, { fetchUser, fetchExercises })(
-  Dashboard
-);
+export default connect(
+  mapStateToProps,
+  { fetchUser, fetchExercises }
+)(Dashboard);
