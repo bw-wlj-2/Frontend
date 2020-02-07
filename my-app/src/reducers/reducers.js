@@ -11,18 +11,6 @@ import {
   CREATE_EXERCISE_FAILURE
 } from "../actions/UserActions/CreateExercise";
 
-// import {
-//   FETCH_USER_START,
-//   FETCH_USER_SUCCESS,
-//   FETCH_USER_FAILURE
-// } from "../actions/UserActions/FetchUser";
-
-// import {
-//   FETCH_EXERCISE_START,
-//   FETCH_EXERCISE_SUCCESS,
-//   FETCH_EXERCISE_FAILURE
-// } from "../actions/UserActions/FetchExercises";
-
 import {
   FETCH_USER_START,
   FETCH_USER_SUCCESS,
@@ -50,7 +38,7 @@ const initialState = {
 };
 
 export const reducers = (state = initialState, action) => {
-  console.log("reducer", action);
+  // console.log("reducer", action);
   switch (action.type) {
     //Register Reducer
 
@@ -184,5 +172,3 @@ export const reducers = (state = initialState, action) => {
       return state;
   }
 };
-
-// export default reducers;

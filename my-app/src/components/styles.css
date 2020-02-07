@@ -1,6 +1,23 @@
 .box {
-  /* width: 20%; */
-  /* box-shadow: .5rem .5rem 1rem #aaaaaa; */
   margin: 1rem auto;
   padding: 1%;
+}
+
+.dark-mode {
+  background: black !important;
+}
+
+#magic {
+  position: relative;
+  left: 5rem;
+  background: #5b7648;
+  color: #e2ffce;
+  border-radius: 20rem;
+  outline: none;
+  animation: action 1s infinite  alternate;
+}
+
+@keyframes action {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-.3rem); }
 }

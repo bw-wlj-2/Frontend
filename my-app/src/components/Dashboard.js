@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions/UserActions/FetchUser";
 import { fetchExercises } from "../actions/UserActions/FetchExercises";
@@ -16,6 +15,8 @@ import AxiosWithAuth from "../utils/AxiosWithAuth";
 import ExCard from "./ExCard";
 import CopyRight from "./CopyRight";
 import workoutImage from "../images/workingOut.svg";
+import { changeText } from '../reducers/useDarkMode';
+import './styles.css'
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -106,56 +107,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 //MAIN DASHBOARD COMPONENT
-const Dashboard = props => {
-  const userID = localStorage.getItem("userID");
-  const history = useHistory();
+const Dashboard = () => {
   const classes = useStyles();
-
   const [exercises, setExercises] = useState([]);
   //set state for search bar
   const [query, setQuery] = useState("");
 
-  //   const [prof, setProf] = useState([]);
-  //   const object = localStorage.getItem("token");
-  //   console.log(object);
-
   const message = localStorage.getItem(`message`);
 
-  // console.log('dashboardUSERID', history);
-
-  //   console.log("checking for exercise", exercises);
-
-  //   useEffect(() => {
-  //     props.fetchUser(userID);
-  //   }, []);
-  //   console.log("this is props", props);
-
-  //   useEffect(() => {
-  //     props.fetchExercises(userID);
-  //     setExercises(props.userExercises);
-  //   }, [exercises]);
-  //   console.log("this is props", props);
-
-  //   const [exercises, setExercises] = useState([]);
-
-  //   console.log("checking for exercise", exercises);
-
-  // useEffect(() => {
-  //   props.fetchUser(userID);
-  // }, []);
-  // console.log("this is props", props);
-  //
-  // useEffect(() => {
-  //   props.fetchExercises(userID);
-  //   setExercises(props.userExercises);
-  // }, [exercises]);
-  // console.log("this is props", props);
   useEffect(() => {
     AxiosWithAuth()
       .get("/api/exercises")
       .then(res => {
-        console.log("unique exercise list", res);
-
+        // console.log("unique exercise list", res);
         setExercises(res.data);
         //for search bar to filter exercises
         const results = res.data.filter(
@@ -170,38 +134,17 @@ const Dashboard = props => {
       });
   }, [query]);
 
-  // useEffect(() => {
-  //   AxiosWithAuth()
-  //     .get("/api/user")
-  //     .then(res => {
-  //       console.log("unique profile", res);
-  //       setProf(res.data);
-  //     })
-  //     .catch(err => {
-  //       console.log("prof err", err);
-  //     });
-  // }, []);
-
-  // useEffect(() => {
-  //   props.fetchUser(object);
-  // }, []);
-  // console.log("user props", props);
-
-  const editProfile = event => {
-    event.preventDefault();
-    history.push("/editprofile");
-  };
-
   const handleInputChange = event => {
     setQuery(event.target.value);
   };
+
   return (
     <div>
       <CssBaseline />
-
-      <main>
+      <main id='mode'>
         {/* Hero unit */}
-        <div className={classes.heroContent}>
+        <div className={classes.heroContent} id='dark'>
+          <div>Click the title</div>
           <Container maxWidth="sm">
             <Typography
               component="h1"
@@ -209,11 +152,13 @@ const Dashboard = props => {
               align="center"
               color="textPrimary"
               gutterBottom
+              id='change-text'
+              onClick={changeText}
             >
               {message}
             </Typography>
             <div>
-              <img width="250" height="220" src={workoutImage} />
+              <img width="250" height="220" src={workoutImage} alt='img'/>
             </div>
             <Typography
               variant="h5"
@@ -290,10 +235,6 @@ const Dashboard = props => {
 const mapStateToProps = state => {
   return state;
 };
-
-// export default connect(mapStateToProps, { fetchUser, fetchExercises })(
-//   Dashboard
-// );
 
 export default connect(mapStateToProps, { fetchUser, fetchExercises })(
   Dashboard
