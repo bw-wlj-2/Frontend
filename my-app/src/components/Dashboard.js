@@ -145,7 +145,7 @@ const Dashboard = () => {
     setDarkMode(!darkMode);
     var x = document.getElementById('change-text');
     if (x.innerHTML === message) {
-      x.innerHTML = `Release the beast!`;
+      x.innerHTML = `Choose a workout`;
     } else {
       x.innerHTML = message;
     }
