@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     textDecoration: "none"
   },
   formDiv: {
-    marginTop: 20,
+    // marginTop: 20,
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1)
   },
@@ -64,25 +64,6 @@ const useStyles = makeStyles(theme => ({
 const Login = props => {
   const classes = useStyles();
   const history = useHistory();
-  //   const [users, setUsers] = useState({ username: '', password: '' })
-
-  // const handleChange = e => {
-  //   setUsers({
-  //     ...users,
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
-  //   const handleSubmit = e => {
-  //     e.preventDefault();
-  //     axios.post(`https://weight-lifting-backend.herokuapp.com/api/login`, users)
-  //       .then(res =>
-  //         localStorage.setItem('token', res.data.payload),
-  //         // setTimeout(function () { history.push(`/dashboard`) }, 1500))
-  //         history.push(`/dashboard`))
-  //       .catch(err => console.log(err))
-  //     setUsers({ username: '', password: '' })
-  //   }
-
   const [credentials, setCredentials] = useState({
     username: "",
     password: ""
@@ -95,30 +76,20 @@ const Login = props => {
 
   const loginForm = e => {
     e.preventDefault();
-    console.log(credentials.username);
-    console.log(credentials.password);
-    console.log(credentials);
     AxiosWithAuth()
       .post("/api/user/login", credentials)
       .then(res => {
         localStorage.setItem("token", res.data.token);
-
-        //         localStorage.setItem("userName", res.data.username);
-
         localStorage.setItem("message", res.data.message);
-
-        console.log(res.data);
-
         history.push("/dashboard");
       })
       .catch(err => console.log(err));
   };
-  console.log(credentials);
   return (
     <div>
       <div className={classes.container}>
         <div>
-          <img height="200" width="200" src={fitnessImage} />
+          <img height="200" width="200" src={fitnessImage} alt='img' />
         </div>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />

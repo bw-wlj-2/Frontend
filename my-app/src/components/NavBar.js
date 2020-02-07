@@ -11,6 +11,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
+import './styles.css';
+import { useDarkMode } from '../reducers/useDarkMode';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -63,12 +65,18 @@ const NavBar = () => {
     setMenuOpen(false);
   };
 
+  const [darkMode, setDarkMode] = useDarkMode(false);
+  const toggleMode = e => {
+    e.preventDefault();
+    setDarkMode(!darkMode);
+  };
+
   return (
     <div>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Button className={classes.menuButton} onClick={recordButtonPosition}>
-            <MenuIcon className={classes.menuIcon} fontSize="medium" />
+            <MenuIcon className={classes.menuIcon} fontSize="default" />
           </Button>
           <Menu anchorEl={anchorEl} open={menuOpen} onClose={closeMenu}>
             <Link className={classes.linkBut} to="/dashboard">
@@ -115,6 +123,9 @@ const NavBar = () => {
               </MenuItem>
             </Link>
           </Menu>
+          <button id='magic'
+            onClick={toggleMode} className={darkMode ? 'toggle toggled' : 'toggle'}
+          >Magic</button>
           <Typography variant="h4" className={classes.title}>
             SIMPLY FIT
           </Typography>

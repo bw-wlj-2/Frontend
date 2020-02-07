@@ -62,8 +62,7 @@ const useStyles = makeStyles(theme => ({
 
 const ExCard = ({ ex }) => {
   const classes = useStyles();
-  console.log(ex);
-
+  // console.log(ex);
   return (
     <Grid item key={ex.id} xs={12} sm={6} md={4}>
       <Card className={classes.card}>

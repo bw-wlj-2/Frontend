@@ -81,7 +81,6 @@ export default function UniqueExercise(props) {
 
   const handleEdit = e => {
     e.preventDefault();
-    // setTimeout(function () { history.push(`/editExercises/${id}`) }, 5000)
     history.push(`/editExercises/${id}`);
   };
 
@@ -95,7 +94,6 @@ export default function UniqueExercise(props) {
       .catch(err => console.log(err));
   };
 
-  // console.log(unique)
   return (
     <div>
       <Zoom in={true } style={{ transitionDelay: '100ms' }}>
