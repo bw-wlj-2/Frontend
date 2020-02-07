@@ -79,6 +79,7 @@ const Login = props => {
     AxiosWithAuth()
       .post("/api/user/login", credentials)
       .then(res => {
+        console.log(res.data)
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("message", res.data.message);
         history.push("/dashboard");
