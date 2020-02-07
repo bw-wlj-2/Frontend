@@ -11,8 +11,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
-import './styles.css';
-import { useAnimation } from '../reducers/useAnimation';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -33,8 +31,6 @@ const useStyles = makeStyles(theme => ({
     margin: "auto",
     marginRight: "1.5%",
     fontFamily: "Concert One, cursive",
-    position: 'relative',
-    right: '1rem'
   },
   menuIcon: {
     position: "absolute",
@@ -65,18 +61,6 @@ const NavBar = () => {
   };
   let closeMenu = () => {
     setMenuOpen(false);
-  };
-
-  // const [darkMode, setDarkMode] = useDarkMode(false);
-  // const toggleMode = e => {
-  //   e.preventDefault();
-  //   setDarkMode(!darkMode);
-  // };
-
-  const [colorChange, setColorChange] = useAnimation(false);
-  const toggleMode = e => {
-    e.preventDefault();
-    setColorChange(!colorChange);
   };
 
   return (
@@ -131,10 +115,8 @@ const NavBar = () => {
               </MenuItem>
             </Link>
           </Menu>
-          <button id='magic'
-            onClick={toggleMode} className={colorChange ? 'toggle toggled' : 'toggle'}
-          >Magic</button>
-          <Typography variant="h4" className={classes.title} id='magicTitle'>
+          
+          <Typography variant="h4" className={classes.title}>
             SIMPLY FIT
           </Typography>
           <FitnessCenterIcon className={classes.icon} fontSize="small" />

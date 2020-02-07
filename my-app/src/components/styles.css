@@ -8,11 +8,10 @@
 }
 
 #magic {
-  position: relative;
-  left: 5rem;
+  z-index: 90000;
   background: #5b7648;
   color: #e2ffce;
-  border-radius: 20rem;
+  border-radius: 20rem; 
   outline: none;
   animation: action 1s infinite  alternate;
 }
@@ -23,7 +22,7 @@
 }
 
 .color-change {
-  animation: color-change 3.5s infinite alternate;
+  animation: color-change 3.5s infinite;
 }
 
 @keyframes color-change {
