@@ -145,7 +145,7 @@ const Dashboard = () => {
     setDarkMode(!darkMode);
     var x = document.getElementById('change-text');
     if (x.innerHTML === message) {
-      x.innerHTML = `What are you working on today?`;
+      x.innerHTML = `Release the beast!`;
     } else {
       x.innerHTML = message;
     }
