@@ -73,7 +73,7 @@ const ExCard = ({ ex }) => {
           <Typography>Region: {ex.region}</Typography>
           <Typography>Reps: {ex.reps}</Typography>
           <Typography> Current lbs: {ex.current_pounds}</Typography>
-          <Typography> Date: {ex.date_completed}</Typography>
+          <Typography> Date completed: {ex.date_completed}</Typography>
         </CardContent>
         <CardActions className={classes.cardActs}>
           <Link className={classes.linkBut} to={`/exercises/${ex.id}`}>
