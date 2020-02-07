@@ -15,8 +15,9 @@ import AxiosWithAuth from "../utils/AxiosWithAuth";
 import ExCard from "./ExCard";
 import CopyRight from "./CopyRight";
 import workoutImage from "../images/workingOut.svg";
-import { changeText } from '../reducers/useAnimation';
 import './styles.css'
+import cn from 'classnames';
+
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -138,13 +139,26 @@ const Dashboard = () => {
     setQuery(event.target.value);
   };
 
+  const [darkMode, setDarkMode] = useState(false);
+  const toggle = e => {
+    e.preventDefault();
+    setDarkMode(!darkMode);
+    var x = document.getElementById('change-text');
+    if (x.innerHTML === message) {
+      x.innerHTML = `What are you working on today?`;
+    } else {
+      x.innerHTML = message;
+    }
+  }
+
   return (
     <div>
       <CssBaseline />
-      <main id='mode'>
+      <main className={cn({ [`dark-mode`]: darkMode })}>
         {/* Hero unit */}
-        <div className={classes.heroContent} id='dark'>
-          <div>Click the title</div>
+        <div className={cn(classes.heroContent, { [`dark-mode`]: darkMode })} >
+          <button id='magic'
+            onClick={toggle} className={cn(`toggle`, { [`toggled`]: darkMode })}>Magic</button>
           <Container maxWidth="sm">
             <Typography
               component="h1"
@@ -153,12 +167,11 @@ const Dashboard = () => {
               color="textPrimary"
               gutterBottom
               id='change-text'
-              onClick={changeText}
             >
               {message}
             </Typography>
             <div>
-              <img width="250" height="220" src={workoutImage} alt='img'/>
+              <img width="250" height="220" src={workoutImage} alt='img' />
             </div>
             <Typography
               variant="h5"
