@@ -11,16 +11,16 @@ import AxiosWithAuth from "../utils/AxiosWithAuth";
 import Zoom from '@material-ui/core/Zoom';
 
 const useStyles = makeStyles(theme => ({
-  title:{
-    marginRight:40,
+  title: {
+    marginRight: 40,
     marginLeft: 40,
     marginTop: 20,
     MarginBottom: 10,
-    color:"#E2FFCE",
+    color: "#E2FFCE",
     border: "1px solid #E2FFCE",
     backgroundColor: "#5B7648",
   },
-  middle:{
+  middle: {
     paddingBottom: 0,
   },
   buttonCon: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
     color: 'red',
     "&:hover": {
       backgroundColor: "red",
-      color:"white"
+      color: "white"
     }
   },
   root: {
@@ -54,9 +54,9 @@ const useStyles = makeStyles(theme => ({
   linkText: {
     marginTop: 4,
     color: "#E2FFCE",
-    textDecoration:"none",
-    "&:hover":{
-      textDecoration:"underline"
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline"
     }
   },
 }));
@@ -96,52 +96,52 @@ export default function UniqueExercise(props) {
 
   return (
     <div>
-      <Zoom in={true } style={{ transitionDelay: '100ms' }}>
-      <Card className={classes.root}>
-        <CardHeader overflow="visible" className={classes.title} title={unique.name} titleTypographyProps={{variant:"h3"}}/>
-        <CardContent className={classes.middle}>
-          <Typography variant="h6" color="textPrimary" component="p">
-            Region: {unique.region}
-          </Typography>
-          <Typography variant="h6" color="textPrimary" component="p">
-            Reps: {unique.reps}
-          </Typography>
-          <Typography variant="h6" color="textPrimary" component="p">
-            Current Lbs: {unique.current_pounds}
-          </Typography>
-          <Typography variant="h6" color="textPrimary" component="p">
-            Date: {unique.date_completed}
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <CardContent className={classes.buttonCon}>
-            <Link to={`/editExercises/${id}`} className={classes.linkBut}>
-              <Button
-                onClick={handleEdit}
-                className={classes.editBut}
-                variant="contained"
-                color="primary"
-              >
-                Edit
-              </Button>
-            </Link>
-            <Link to="/dashboard" className={classes.linkBut}>
-              <Button
-                onClick={handleDelete}
-                className={classes.deleteBut}
-                variant="contained"
-              >
-                Delete
-              </Button>
-            </Link>
+      <Zoom in={true} style={{ transitionDelay: '100ms' }}>
+        <Card className={classes.root}>
+          <CardHeader overflow="visible" className={classes.title} title={unique.name} titleTypographyProps={{ variant: "h3" }} />
+          <CardContent className={classes.middle}>
+            <Typography variant="h6" color="textPrimary" component="p">
+              Region: {unique.region}
+            </Typography>
+            <Typography variant="h6" color="textPrimary" component="p">
+              Reps: {unique.reps}
+            </Typography>
+            <Typography variant="h6" color="textPrimary" component="p">
+              Current Lbs: {unique.current_pounds}
+            </Typography>
+            <Typography variant="h6" color="textPrimary" component="p">
+              Date completed: {unique.date_completed}
+            </Typography>
           </CardContent>
-        </CardActions>
-      <p>
+          <CardActions disableSpacing>
+            <CardContent className={classes.buttonCon}>
+              <Link to={`/editExercises/${id}`} className={classes.linkBut}>
+                <Button
+                  onClick={handleEdit}
+                  className={classes.editBut}
+                  variant="contained"
+                  color="primary"
+                >
+                  Edit
+              </Button>
+              </Link>
+              <Link to="/dashboard" className={classes.linkBut}>
+                <Button
+                  onClick={handleDelete}
+                  className={classes.deleteBut}
+                  variant="contained"
+                >
+                  Delete
+              </Button>
+              </Link>
+            </CardContent>
+          </CardActions>
+          <p>
             Go to <Link className={classes.linkText} to="/dashboard"> Dashboard</Link>
           </p>
-      </Card>
+        </Card>
       </Zoom>
     </div>
-    
+
   );
 }
