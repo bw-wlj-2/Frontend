@@ -22,15 +22,19 @@
 }
 
 .color-change {
-  animation: color-change 3.5s infinite;
+  animation: color-change 4.5s infinite;
 }
 
 @keyframes color-change {
-  0% { color: #e2ffce; }
+  0% { color: #85ffdbc2; }
+  10% { color: rgb(190, 0, 117); }
   20% { color: rgb(255, 75, 75); }
-  35% { color: rgb(255, 207, 75); }
-  50% { color: rgb(79, 79, 255); }
-  65% { color: rgb(126, 255, 75); }
+  30% { color: rgb(255, 207, 75); }
+  40% { color: rgb(126, 255, 75); }
+  50% { color: black; }
+  60% { color: rgb(0, 28, 190); }
+  70% { color: rgb(0, 152, 190); }
+  80% { color: rgb(190, 92, 0); }
   80% { color: rgb(159, 0, 190); }
   100% { color: #5b7648; }
 }

@@ -167,6 +167,7 @@ const Dashboard = () => {
               color="textPrimary"
               gutterBottom
               id='change-text'
+              className={cn({[`color-change`]: darkMode})}
             >
               {message}
             </Typography>
