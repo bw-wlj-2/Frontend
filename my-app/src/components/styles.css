@@ -21,3 +21,17 @@
   0% { transform: translateY(0); }
   100% { transform: translateY(-.3rem); }
 }
+
+.color-change {
+  animation: color-change 3.5s infinite alternate;
+}
+
+@keyframes color-change {
+  0% { color: #e2ffce; }
+  20% { color: rgb(255, 75, 75); }
+  35% { color: rgb(255, 207, 75); }
+  50% { color: rgb(79, 79, 255); }
+  65% { color: rgb(126, 255, 75); }
+  80% { color: rgb(159, 0, 190); }
+  100% { color: #5b7648; }
+}

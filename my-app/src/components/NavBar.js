@@ -12,7 +12,7 @@ import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import './styles.css';
-// import { useDarkMode } from '../reducers/useDarkMode';
+import { useAnimation } from '../reducers/useAnimation';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -33,8 +33,8 @@ const useStyles = makeStyles(theme => ({
     margin: "auto",
     marginRight: "1.5%",
     fontFamily: "Concert One, cursive",
-    // position: 'relative',
-    // right: '1.3rem'
+    position: 'relative',
+    right: '1rem'
   },
   menuIcon: {
     position: "absolute",
@@ -72,6 +72,12 @@ const NavBar = () => {
   //   e.preventDefault();
   //   setDarkMode(!darkMode);
   // };
+
+  const [colorChange, setColorChange] = useAnimation(false);
+  const toggleMode = e => {
+    e.preventDefault();
+    setColorChange(!colorChange);
+  };
 
   return (
     <div>
@@ -125,10 +131,10 @@ const NavBar = () => {
               </MenuItem>
             </Link>
           </Menu>
-          {/* <button id='magic'
-            onClick={toggleMode} className={darkMode ? 'toggle toggled' : 'toggle'}
-          >Magic</button> */}
-          <Typography variant="h4" className={classes.title}>
+          <button id='magic'
+            onClick={toggleMode} className={colorChange ? 'toggle toggled' : 'toggle'}
+          >Magic</button>
+          <Typography variant="h4" className={classes.title} id='magicTitle'>
             SIMPLY FIT
           </Typography>
           <FitnessCenterIcon className={classes.icon} fontSize="small" />

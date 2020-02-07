@@ -15,7 +15,7 @@ import AxiosWithAuth from "../utils/AxiosWithAuth";
 import ExCard from "./ExCard";
 import CopyRight from "./CopyRight";
 import workoutImage from "../images/workingOut.svg";
-import { changeText } from '../reducers/useDarkMode';
+import { changeText } from '../reducers/useAnimation';
 import './styles.css'
 
 const useStyles = makeStyles(theme => ({
